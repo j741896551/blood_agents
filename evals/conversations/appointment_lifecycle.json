@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "name": "预约子智能体生命周期基线",
+  "cases": [
+    {
+      "id": "create_query_cancel",
+      "description": "新建前不得写入；确认后查询同一预约；取消需二次确认",
+      "user_id": "U1001",
+      "turns": [
+        {
+          "id": "start",
+          "message": "我想预约明天下午的献血",
+          "expected": {
+            "intent": "appointment",
+            "result_status": "need_more_info",
+            "tools_include": ["query_sites"],
+            "tools_exclude": ["submit_appointment"]
+          }
+        },
+        {
+          "id": "site",
+          "message": "市中心献血屋，就我本人献血",
+          "expected": {
+            "intent": "appointment",
+            "result_status": "awaiting_confirmation",
+            "reply_mode": "llm",
+            "preview_confirmable": true,
+            "slots": {"site": "市中心献血屋"},
+            "tools_exclude": ["submit_appointment"]
+          }
+        },
+        {
+          "id": "submit",
+          "message": "确认预约",
+          "expected": {
+            "result_success": true,
+            "result_code": "OK",
+            "data_status": "booked",
+            "tools_include": ["submit_appointment"]
+          }
+        },
+        {
+          "id": "query",
+          "message": "查询我的预约记录",
+          "expected": {
+            "result_status": "appointments_found",
+            "appointment_statuses": ["booked"],
+            "same_appointment_id_as": "submit",
+            "tools_exact": ["query_user_appointments"]
+          }
+        },
+        {
+          "id": "cancel_request",
+          "message": "帮我取消明天下午市中心献血屋的预约",
+          "expected": {
+            "result_status": "awaiting_action_confirmation",
+            "reply_mode": "llm",
+            "preview_confirmable": true,
+            "same_appointment_id_as": "submit",
+            "tools_exclude": ["cancel_appointment"]
+          }
+        },
+        {
+          "id": "cancel_confirm",
+          "message": "确认取消",
+          "expected": {
+            "result_success": true,
+            "operation": "cancel_appointment",
+            "data_status": "cancelled",
+            "same_appointment_id_as": "submit",
+            "tools_exact": ["cancel_appointment"]
+          }
+        },
+        {
+          "id": "query_after_cancel",
+          "message": "再查一下我的预约信息",
+          "expected": {
+            "result_status": "appointments_found",
+            "appointment_statuses": ["cancelled"],
+            "same_appointment_id_as": "submit",
+            "tools_exact": ["query_user_appointments"]
+          }
+        }
+      ]
+    },
+    {
+      "id": "seeded_checkin",
+      "description": "四状态历史、签到二次确认、签后不可取消",
+      "user_id": "U1002",
+      "seed_appointment_samples": true,
+      "turns": [
+        {
+          "id": "query_four_states",
+          "message": "查询我的预约记录",
+          "expected": {
+            "result_status": "appointments_found",
+            "appointment_statuses": ["booked", "cancelled", "checked_in", "donated"],
+            "tools_exact": ["query_user_appointments"]
+          }
+        },
+        {
+          "id": "checkin_request",
+          "message": "帮我签到后天上午大学城献血车的预约",
+          "expected": {
+            "result_status": "awaiting_action_confirmation",
+            "reply_mode": "llm",
+            "preview_confirmable": true,
+            "tools_exclude": ["checkin_appointment"]
+          }
+        },
+        {
+          "id": "checkin_confirm",
+          "message": "确认签到",
+          "expected": {
+            "result_success": true,
+            "operation": "checkin_appointment",
+            "data_status": "checked_in",
+            "tools_exact": ["checkin_appointment"]
+          }
+        },
+        {
+          "id": "cancel_after_checkin",
+          "message": "帮我取消后天上午大学城献血车的预约",
+          "expected": {
+            "result_code": "INVALID_STATUS",
+            "tools_exclude": ["cancel_appointment"]
+          }
+        }
+      ]
+    }
+  ]
+}

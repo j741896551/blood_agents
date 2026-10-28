@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "name": "真实模型单轮烟测",
+  "cases": [
+    {
+      "id": "greeting",
+      "description": "验证主导航、回复和模型评审均可用",
+      "review_goal": "用户说你好后，智能体自然回应，并只介绍真实支持的服务，不捏造个人业务数据。",
+      "user_id": "U1001",
+      "turns": [
+        {
+          "id": "hello",
+          "message": "你好",
+          "expected": {
+            "intent": "general",
+            "reply_mode": "llm"
+          }
+        }
+      ]
+    }
+  ]
+}

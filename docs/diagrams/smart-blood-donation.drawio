@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="drawio" version="26.0.0" type="device" compressed="false">
+  <diagram id="target-architecture" name="01 · 目标多智能体架构">
+    <mxGraphModel dx="1200" dy="850" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1600" pageHeight="1250" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="target-entry" value="交互入口&#10;Gradio / FastAPI / CLI" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="target-entry" data-source="blood_agents/web.py; blood_agents/api.py; blood_agents/cli.py" data-status="code">
+          <mxGeometry x="630" y="80" width="340" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="target-session" value="会话上下文与 Checkpointer&#10;按 user_id + session_id 隔离&#10;保存 active_agent 与子图状态" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="target-session" data-source="blood_agents/orchestration/conversation.py; blood_agents/orchestration/graph.py" data-status="code">
+          <mxGeometry x="630" y="230" width="340" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="target-main" value="主 Agent / Supervisor&#10;识别意图并分派子图&#10;接收结果；下一轮继续导航" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="target-main" data-source="blood_agents/orchestration/graph.py" data-status="code">
+          <mxGeometry x="630" y="430" width="340" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="target-appointment" value="预约子 Agent / 子图&#10;收集信息 → 查历史与网点 → 预览&#10;确认后提交；明确拒绝/取消不提交&#10;预约状态跨轮保存" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="target-appointment" data-source="blood_agents/domains/appointment.py; blood_agents/orchestration/graph.py" data-status="code">
+          <mxGeometry x="120" y="650" width="400" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="target-domain-agents" value="并列的领域子 Agent / 子图&#10;积分：兑换与地址订单多轮流程&#10;记录：按登录用户查询献血历史&#10;FAQ：检索证据与模型核验" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="target-domain-agents" data-source="blood_agents/domains/points.py; blood_agents/domains/records.py; blood_agents/domains/faq.py" data-status="code">
+          <mxGeometry x="1050" y="650" width="440" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="target-terminal" value="预约流程已到终态？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="target-terminal" data-source="blood_agents/core/models.py" data-status="code">
+          <mxGeometry x="210" y="890" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="target-wait" value="尚未结束：等待用户下一轮&#10;保留 active_agent = appointment" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="target-wait" data-source="blood_agents/orchestration/conversation.py" data-status="code">
+          <mxGeometry x="120" y="1070" width="400" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="target-return" value="子图回传 agent_handoff&#10;完成 / 用户明确拒绝或取消&#10;控制权交回主 Agent" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="target-return" data-source="blood_agents/core/models.py; blood_agents/orchestration/graph.py" data-status="code">
+          <mxGeometry x="630" y="900" width="340" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="t01" value="身份 + 会话" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="target-entry" target="target-session" data-model-id="t01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t02" value="首次导航 / active_agent 续接" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="target-session" target="target-main" data-model-id="t02">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t03" value="识别为预约" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="target-main" target="target-appointment" data-model-id="t03">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t04" value="识别为其他领域任务" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="target-main" target="target-domain-agents" data-model-id="t04">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t05" value="预约流程状态" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="target-appointment" target="target-terminal" data-model-id="t05">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t06" value="否：继续收集 / 等确认" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="target-terminal" target="target-wait" data-model-id="t06">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t07" value="同会话恢复并续接" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="target-wait" target="target-session" data-model-id="t07">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="40" y="1120" />
+              <mxPoint x="40" y="290" />
+              <mxPoint x="590" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t08" value="是：完成 / 拒绝 / 取消" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="target-terminal" target="target-return" data-model-id="t08">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t09" value="完成后回传领域结果" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="target-domain-agents" target="target-return" data-model-id="t09">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="t10" value="下一轮重新导航" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="target-return" target="target-main" data-model-id="t10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1530" y="960" />
+              <mxPoint x="1530" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="architecture" name="02 · 当前代码架构">
+    <mxGraphModel dx="1200" dy="850" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1850" pageHeight="1130" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="entry" value="交互入口&#10;Gradio / FastAPI / CLI" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="entry" data-source="blood_agents/web.py; blood_agents/api.py; blood_agents/cli.py" data-status="code">
+          <mxGeometry x="700" y="110" width="340" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="conversation" value="会话隔离 + 缓存前置&#10;user_id + session_id&#10;缓存未命中才进入 Supervisor" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="conversation" data-source="blood_agents/orchestration/conversation.py; blood_agents/orchestration/graph.py; blood_agents/knowledge/static_faq_cache.py" data-status="code">
+          <mxGeometry x="700" y="250" width="340" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="memory" value="SQLite Checkpointer&#10;文件库持久化&#10;内存库 MemorySaver" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="memory" data-source="blood_agents/orchestration/graph.py" data-status="code">
+          <mxGeometry x="1220" y="250" width="300" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="supervisor" value="LangGraph Supervisor&#10;领域意图路由" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="supervisor" data-source="blood_agents/orchestration/graph.py" data-status="code">
+          <mxGeometry x="700" y="410" width="340" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="router" value="IntentRouter&#10;导航/预约分层理解 + 规则降级" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="router" data-source="blood_agents/orchestration/router.py" data-status="code">
+          <mxGeometry x="130" y="410" width="340" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="gateway" value="ModelGateway&#10;主备切换 / 超时 / 熔断" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="gateway" data-source="blood_agents/llm/model_gateway.py" data-status="code">
+          <mxGeometry x="130" y="580" width="340" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="providers" value="第三方平台主/备模型 API&#10;OpenAI 兼容；非本地生成" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="providers" data-source="blood_agents/orchestration/router.py; blood_agents/llm/model_gateway.py" data-status="code">
+          <mxGeometry x="50" y="740" width="330" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="rules" value="离线规则&#10;无密钥或模型失败时使用" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="rules" data-source="blood_agents/orchestration/router.py" data-status="code">
+          <mxGeometry x="420" y="740" width="300" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="agents" value="五个编译领域子图&#10;预约/积分：独立理解与跨轮状态&#10;记录/FAQ：单轮；OCR 原型暂缓" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="agents" data-source="blood_agents/orchestration/graph.py; blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="1170" y="410" width="470" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="main_return" value="main_agent_return&#10;接收 agent_handoff 后返回入口" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="main_return" data-source="blood_agents/orchestration/graph.py" data-status="code">
+          <mxGeometry x="700" y="590" width="340" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="tools" value="ToolRegistry&#10;业务调用与脱敏执行轨迹" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="tools" data-source="blood_agents/business/tools.py" data-status="code">
+          <mxGeometry x="1170" y="600" width="470" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="legacy" value="MockLegacyBloodAPI&#10;资料 / 历史 / 网点 / 预约 / 积分" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="legacy" data-source="blood_agents/business/legacy_api.py" data-status="code">
+          <mxGeometry x="940" y="770" width="360" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="ragocr" value="FAQ 知识检索&#10;默认关键词&#10;BGE+FAISS / Milvus Lite（可选）&#10;可选 bge-reranker 精排&#10;模型证据核验" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="ragocr" data-source="blood_agents/knowledge/rag.py; blood_agents/knowledge/adapters.py" data-status="code">
+          <mxGeometry x="1350" y="770" width="360" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="sqlite" value="SQLite 演示库&#10;用户 / 积分 / 记录 / 新预约" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="sqlite" data-source="blood_agents/business/repository.py" data-status="code">
+          <mxGeometry x="940" y="960" width="360" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="future" value="范围说明：OCR / LoRA 暂缓&#10;vLLM / TGI 非当前范围&#10;MCP stdio 仅礼品目录只读工具" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#8B939C;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="future" data-source="blood_agents/business/mcp_server.py; deploy/docker-compose.yml" data-status="scope-note">
+          <mxGeometry x="1350" y="960" width="360" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="a01" value="消息 + 身份/会话" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="entry" target="conversation" data-model-id="a01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a02" value="checkpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="conversation" target="memory" data-model-id="a02">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a03" value="静态缓存未命中" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="conversation" target="supervisor" data-model-id="a03">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a04" value="navigate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="supervisor" target="router" data-model-id="a04">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a05" value="配置模型时" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="router" target="gateway" data-model-id="a05">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a06" value="LLM 调用" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="gateway" target="providers" data-model-id="a06">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a07" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="router" target="rules" data-model-id="a07">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="540" y="460" />
+              <mxPoint x="540" y="700" />
+              <mxPoint x="570" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a08" value="条件路由" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="supervisor" target="agents" data-model-id="a08">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a09" value="调用工具" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="agents" target="tools" data-model-id="a09">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a13" value="单轮完成 / 预约终态" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="agents" target="main_return" data-model-id="a13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a10" value="旧系统契约" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tools" target="legacy" data-model-id="a10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1400" y="730" />
+              <mxPoint x="1120" y="730" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a11" value="知识检索" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="tools" target="ragocr" data-model-id="a11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1400" y="730" />
+              <mxPoint x="1530" y="730" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a12" value="演示数据" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="legacy" target="sqlite" data-model-id="a12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="appointment-flow" name="03 · 当前预约多轮流程">
+    <mxGraphModel dx="1200" dy="850" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1940" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="message" value="用户发来本轮消息" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="message" data-source="blood_agents/web.py" data-status="code">
+          <mxGeometry x="690" y="80" width="330" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="restore" value="按用户 + 会话恢复预约子图状态" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="restore" data-source="blood_agents/orchestration/conversation.py" data-status="code">
+          <mxGeometry x="690" y="190" width="330" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="understand" value="主图只识别预约意图并派发&#10;子图 appointment_understand 提取槽位/动作" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="understand" data-source="blood_agents/orchestration/graph.py; blood_agents/orchestration/router.py" data-status="code">
+          <mxGeometry x="690" y="300" width="330" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="cancel" value="取消？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="cancel" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="760" y="430" width="190" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="cancelled" value="清空预约状态并退出&#10;未提交，交回主图" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="cancelled" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="1320" y="440" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="profile" value="查询已实名资料" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="profile" data-source="blood_agents/domains/appointment.py; blood_agents/business/legacy_api.py" data-status="code">
+          <mxGeometry x="690" y="570" width="330" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="has_profile" value="资料可用？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="has_profile" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="760" y="690" width="190" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="profile_failed" value="返回实名认证失败&#10;清空状态并交回主图" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="profile_failed" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="1320" y="700" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="site_history" value="查询网点时段 + 预约历史&#10;合并本轮槽位；仅提示历史偏好" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="site_history" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="690" y="830" width="330" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="confirmed" value="上一轮已预览&#10;且本轮明确确认？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="confirmed" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="685" y="945" width="340" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="recheck" value="重新校验可用时段&#10;调用 submit_appointment" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="recheck" data-source="blood_agents/domains/appointment.py; blood_agents/business/legacy_api.py" data-status="code">
+          <mxGeometry x="1320" y="960" width="320" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="submit_result" value="根据接口返回码回答&#10;成功/失败均清状态并回主图" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="submit_result" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="1320" y="1110" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="missing" value="日期 / 网点 / 时段齐全？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="missing" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="690" y="1120" width="330" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ask_missing" value="追问缺少的参数&#10;保存 collecting 状态" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="ask_missing" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="200" y="1120" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="available" value="组合在可用配置内？" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="available" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="690" y="1270" width="330" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ask_reselect" value="返回可选网点/时段&#10;请用户重新选择" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="ask_reselect" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="200" y="1270" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="preview" value="生成预约预览&#10;保存 awaiting_confirmation&#10;等待下一轮确认" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="preview" data-source="blood_agents/domains/appointment.py" data-status="code">
+          <mxGeometry x="690" y="1430" width="330" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="loop" value="下一轮消息继续此会话" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontColor=#1C3040;fontSize=17;align=center;verticalAlign=middle;strokeWidth=2;spacing=8;" vertex="1" parent="1" data-model-id="loop" data-source="blood_agents/orchestration/conversation.py" data-status="code">
+          <mxGeometry x="1320" y="1430" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="f01" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="message" target="restore" data-model-id="f01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f02" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="restore" target="understand" data-model-id="f02">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f03" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="understand" target="cancel" data-model-id="f03">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f04" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="cancel" target="cancelled" data-model-id="f04">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f05" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="cancel" target="profile" data-model-id="f05">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f06" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="profile" target="has_profile" data-model-id="f06">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f07" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="has_profile" target="profile_failed" data-model-id="f07">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f08" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="has_profile" target="site_history" data-model-id="f08">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f09" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="site_history" target="confirmed" data-model-id="f09">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f10" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="confirmed" target="recheck" data-model-id="f10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f11" value="接口返回" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="recheck" target="submit_result" data-model-id="f11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f12" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="confirmed" target="missing" data-model-id="f12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f13" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="missing" target="ask_missing" data-model-id="f13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f14" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="missing" target="available" data-model-id="f14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f15" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="available" target="ask_reselect" data-model-id="f15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f16" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="available" target="preview" data-model-id="f16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f17" value="等明确确认" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="preview" target="loop" data-model-id="f17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ask_missing" target="loop" data-model-id="f18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="1165" />
+              <mxPoint x="580" y="1380" />
+              <mxPoint x="1290" y="1380" />
+              <mxPoint x="1290" y="1470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#647887;strokeWidth=2;endArrow=block;endSize=8;fontSize=14;fontColor=#324555;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="ask_reselect" target="loop" data-model-id="f19">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="1550" />
+              <mxPoint x="1480" y="1550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,5 @@
+{"instruction":"识别献血业务意图，只输出标签","input":"我想预约明天下午献血","output":"appointment"}
+{"instruction":"识别献血业务意图，只输出标签","input":"我还有多少积分","output":"points"}
+{"instruction":"识别献血业务意图，只输出标签","input":"查一下去年献过几次血","output":"records"}
+{"instruction":"识别献血业务意图，只输出标签","input":"帮我识别这张化验单","output":"ocr"}
+{"instruction":"识别献血业务意图，只输出标签","input":"献血之前有什么注意事项","output":"faq"}

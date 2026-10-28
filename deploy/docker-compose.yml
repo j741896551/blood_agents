@@ -1,0 +1,42 @@
+# 历史本地部署样例：当前作品集使用第三方模型平台 API，不启动或验收 vLLM/TGI。
+# 保留本文件用于说明早期配置；文件存在不代表已下载模型、实跑容器或完成性能验证。
+services:
+  vllm:
+    image: vllm/vllm-openai:latest
+    command: >-
+      --model ${LOCAL_MODEL:-Qwen/Qwen2.5-7B-Instruct}
+      --served-model-name blood-agent-model
+      --tensor-parallel-size ${TENSOR_PARALLEL_SIZE:-1}
+    ports:
+      - "8001:8000"
+    volumes:
+      - model-cache:/root/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+  tgi:
+    profiles: ["tgi"]
+    image: ghcr.io/huggingface/text-generation-inference:latest
+    command: --model-id ${LOCAL_MODEL:-Qwen/Qwen2.5-7B-Instruct}
+    ports:
+      - "8002:80"
+    volumes:
+      - model-cache:/data
+
+  milvus-standalone:
+    image: milvusdb/milvus:v2.4.15
+    command: ["milvus", "run", "standalone"]
+    environment:
+      ETCD_USE_EMBED: "true"
+      COMMON_STORAGETYPE: local
+    ports:
+      - "19530:19530"
+    volumes:
+      - milvus-data:/var/lib/milvus
+
+volumes:
+  model-cache:
+  milvus-data:

@@ -1,0 +1,112 @@
+[
+  {
+    "id": "donation_law_article_9",
+    "title": "中华人民共和国献血法（第九条）摘要",
+    "source": "https://zwfw.nhc.gov.cn/kzx/zcfg/qdxzxgxbkszsp_246/199712/t19971229_1352.html",
+    "source_kind": "public",
+    "published_at": "1997-12-29",
+    "checked_at": "2026-10-15",
+    "provenance": "国家卫健委政务服务平台公开法条的人工改写摘要，非网页全文或实时法规数据库",
+    "path": "documents/industry/donation_law_article_9.md"
+  },
+  {
+    "id": "donation_interval_rules",
+    "title": "2026版血站技术操作规程：不同献血类型的最短间隔",
+    "source": "https://wjw.fujian.gov.cn/ztzl/rexuebamin/xianxuekpzs/202609/t20260930_7220234.htm",
+    "source_kind": "public",
+    "published_at": "2026-09-30",
+    "checked_at": "2026-10-25",
+    "provenance": "福建省卫健委网站发布的福建省血液中心科普，转述国家卫健委2026版血站技术操作规程的间隔要求；人工改写，非个人资格判断",
+    "path": "documents/industry/donation_interval_rules.md"
+  },
+  {
+    "id": "huarong_donation_notice",
+    "title": "献血前后的注意事项摘要",
+    "source": "https://www.hbhr.gov.cn/hrqxxgk/xxgkml/ggqsydwxxgk/wsjk/ddzwsy/202508/t20250821_720743.html",
+    "source_kind": "public",
+    "published_at": "2025-08-20",
+    "checked_at": "2026-10-15",
+    "provenance": "华容区段店卫生院公开科普的人工改写摘要，非个体化医疗建议",
+    "path": "documents/industry/before_after_donation.md"
+  },
+  {
+    "id": "national_donor_screening_2026",
+    "title": "献血前健康评估与个人资格边界",
+    "source": "https://www.nhc.gov.cn/xcs/c100122/202606/ea9d8d2493f84cbf802f6ebb6155fa55.shtml",
+    "source_kind": "public",
+    "published_at": "2026-06-17",
+    "checked_at": "2026-10-25",
+    "provenance": "国家卫健委新闻发布会献血问答的人工摘要；仅解释一般筛查流程，不诊断个人能否献血",
+    "path": "documents/industry/national_donor_screening_2026.md"
+  },
+  {
+    "id": "whole_blood_and_platelets",
+    "title": "捐献全血与单采血小板有什么不同",
+    "source": "https://www.nhc.gov.cn/xcs/c100122/202506/a731e5672ddc45cea7c85ecf90821889.shtml",
+    "source_kind": "public",
+    "published_at": "2025-06-05",
+    "checked_at": "2026-10-25",
+    "provenance": "国家卫健委新闻发布会对全血与单采血小板区别的人工摘要；时间为科普估计，非预约时长承诺",
+    "path": "documents/industry/whole_blood_and_platelets.md"
+  },
+  {
+    "id": "national_aftercare_2026",
+    "title": "2026版规程中的献血后注意与不适处理",
+    "source": "https://wsjk.ln.gov.cn/wsjk/zfxxgk/zc/gjjwj/2026070215022620516/index.shtml",
+    "source_kind": "public",
+    "published_at": "2026-06-22",
+    "checked_at": "2026-10-25",
+    "provenance": "辽宁省卫健委转载国家卫健委2026版血站技术操作规程通知及其PDF附件的人工摘要；非个体化处置建议",
+    "path": "documents/industry/national_aftercare_2026.md"
+  },
+  {
+    "id": "national_electronic_certificate",
+    "title": "全国电子无偿献血证与记录查询",
+    "source": "https://www.nhc.gov.cn/yzygj/c100068/202006/df0e888f92e642c68c13cb2976503b97.shtml",
+    "source_kind": "public",
+    "published_at": "2020-06-14",
+    "checked_at": "2026-10-25",
+    "provenance": "国家卫健委启用全国统一电子无偿献血证通知的人工摘要；只说明公开渠道，不作为本项目个人记录来源",
+    "path": "documents/industry/national_electronic_certificate.md"
+  },
+  {
+    "id": "national_blood_fee_relief",
+    "title": "无偿献血者及亲属用血费用减免的一般流程",
+    "source": "https://www.nhc.gov.cn/ylyjs/zcwj/202506/43f8d112f86f428982346ea219801f0b.shtml",
+    "source_kind": "public",
+    "published_at": "2025-06-06",
+    "checked_at": "2026-10-25",
+    "provenance": "国家卫健委关于血费减免一次都不跑的通知摘要；具体资格和减免额度依当地政策与经办审核",
+    "path": "documents/industry/national_blood_fee_relief.md"
+  },
+  {
+    "id": "national_donation_honors",
+    "title": "全国无偿献血表彰奖励与本地积分的区别",
+    "source": "https://www.nhc.gov.cn/yzygj/c100068/202203/70b1323952aa42f9bdbd5237af3a1595.shtml",
+    "source_kind": "public",
+    "published_at": "2022-03-14",
+    "checked_at": "2026-10-25",
+    "provenance": "国家卫健委等部门2022年版全国无偿献血表彰奖励办法通知的人工摘要；国家表彰与地方业务积分不同",
+    "path": "documents/industry/national_donation_honors.md"
+  },
+  {
+    "id": "blood_screening_and_use",
+    "title": "献出的血液如何检测、制备并用于临床",
+    "source": "https://www.nhc.gov.cn/xcs/c100122/202606/ea9d8d2493f84cbf802f6ebb6155fa55.shtml",
+    "source_kind": "public",
+    "published_at": "2026-06-17",
+    "checked_at": "2026-10-25",
+    "provenance": "国家卫健委新闻发布会对血液检测、成分制备、储存和发放流程的人工摘要；不是单袋血液追踪结果",
+    "path": "documents/industry/blood_screening_and_use.md"
+  },
+  {
+    "id": "donor_consent_and_questionnaire",
+    "title": "献血者知情同意、健康征询与免疫接种问题",
+    "source": "https://www.nhc.gov.cn/zwgk/jdjd/201304/19aefe515bbc4c6d86bb64a389195a38.shtml",
+    "source_kind": "public",
+    "published_at": "2012-07-09",
+    "checked_at": "2026-10-25",
+    "provenance": "原卫生部对GB 18467-2011的公开答问人工摘要；仅解释筛查项目，不给个人接种后献血日期",
+    "path": "documents/industry/donor_consent_and_questionnaire.md"
+  }
+]

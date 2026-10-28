@@ -1,0 +1,23 @@
+.env
+.venv/
+.venv312/
+venv/
+__pycache__/
+*.py[cod]
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+.idea/
+logs/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+evals/reports/
+.playwright-cli/
+data/knowledge_sources/
+# 本机业务替身服务与合成业务数据不进入 Agent 作品集仓库。
+local_business/
+
