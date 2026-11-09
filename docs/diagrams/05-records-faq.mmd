@@ -1,0 +1,54 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    supervisor["supervisor<br/>单独记录或组合分析"]:::orchestrator
+    records_agent["records_agent<br/>只查入口用户献血记录"]:::agent
+    ReadOnlyQueryAgent["ReadOnlyQueryAgent.run<br/>FAQ 的模型决策循环"]:::model
+    consultation_catalog["consultation_catalog<br/>动态只读工具白名单"]:::storage
+    QueryStep["QueryStep<br/>工具 / 参数 / 观察引用"]:::decision
+    invoke_consultation["invoke_consultation<br/>schema 校验 / 注入身份"]:::tool
+    knowledge_search["knowledge_search<br/>已发布知识片段"]:::tool
+    query_records["个人查询工具<br/>记录 / 积分 / 订单等"]:::tool
+    date_offset["date_offset<br/>引用事实与规则进行日期运算"]:::tool
+    EvidenceAssessor["EvidenceAssessor<br/>知识证据核验 / 缺口"]:::decision
+    observations["observations<br/>成功 / 失败及来源观察"]:::storage
+    ReplyComposer["ReplyComposer<br/>事实与证据辅助模型回复"]:::model
+    supervisor -->|"单独记录"| records_agent
+    supervisor -->|"知识 / 组合只读问题"| ReadOnlyQueryAgent
+    consultation_catalog -->|"工具目录"| ReadOnlyQueryAgent
+    ReadOnlyQueryAgent --> QueryStep
+    QueryStep -->|"call_tool"| invoke_consultation
+    invoke_consultation --> knowledge_search
+    invoke_consultation --> query_records
+    QueryStep -->|"内置运算"| date_offset
+    knowledge_search --> EvidenceAssessor
+    EvidenceAssessor --> observations
+    query_records --> observations
+    date_offset --> observations
+    observations -->|"再决策；默认上限8步"| ReadOnlyQueryAgent
+    QueryStep -->|"finish"| ReplyComposer
+    records_agent -->|"记录回执"| ReplyComposer
+    linkStyle 0 stroke:#738397,stroke-width:1.5px;
+    linkStyle 1 stroke:#738397,stroke-width:1.5px;
+    linkStyle 2 stroke:#8867B4,stroke-width:1.5px;
+    linkStyle 3 stroke:#738397,stroke-width:1.5px;
+    linkStyle 4 stroke:#738397,stroke-width:1.5px;
+    linkStyle 5 stroke:#738397,stroke-width:1.5px;
+    linkStyle 6 stroke:#738397,stroke-width:1.5px;
+    linkStyle 7 stroke:#738397,stroke-width:1.5px;
+    linkStyle 8 stroke:#738397,stroke-width:1.5px;
+    linkStyle 9 stroke:#738397,stroke-width:1.5px;
+    linkStyle 10 stroke:#738397,stroke-width:1.5px;
+    linkStyle 11 stroke:#738397,stroke-width:1.5px;
+    linkStyle 12 stroke:#8867B4,stroke-width:1.5px;
+    linkStyle 13 stroke:#738397,stroke-width:1.5px;
+    linkStyle 14 stroke:#738397,stroke-width:1.5px;

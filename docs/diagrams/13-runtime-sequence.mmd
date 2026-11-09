@@ -1,0 +1,69 @@
+%%{init: {'theme': 'base', 'themeVariables': {'actorBkg': '#EAF2FF', 'actorBorder': '#3575C5', 'actorTextColor': '#24364C', 'noteBkgColor': '#FFF4DE'}}}%%
+sequenceDiagram
+    autonumber
+    actor User as 用户
+    participant C as ConversationGraph
+    participant S as supervisor
+    participant A as 预约子图
+    participant P as 积分子图
+    participant R as 记录子图
+    participant F as FAQ只读循环
+    participant T as ToolRegistry
+    participant M as ModelGateway
+    participant DB as 会话库与checkpoint
+    User->>+C: user_id / session_id / message
+    C->>DB: 隔离线程键，恢复流程状态
+    Note over C,S: 严格静态缓存命中时直接返回；以下为未命中路径
+    C->>+S: 当前消息、活动领域和任务快照
+    S->>M: 模型导航与账户访问范围
+    M-->>S: NavigationDecision
+    S-->>-C: 单领域或顺序任务队列
+    alt appointment
+        C->>+A: action/slots理解与只读规划
+        A->>M: 预约语义理解、工具规划
+        A->>T: 查询资料、历史和号源
+        T-->>A: 本轮业务事实
+        opt 已交付完整预览且用户最终确认
+            A->>T: submit_appointment，入口身份和幂等键
+            T-->>A: 成功或拒绝回执
+        end
+        A->>M: 依据事实生成预约回复
+        A-->>-C: 草稿、result、handoff
+    else points
+        C->>+P: 积分动作与待办状态
+        P->>T: 余额、目录、地址、订单查询
+        T-->>P: 当前事实
+        opt 当前写操作已展示并获确认
+            P->>T: 地址/兑换/订单写入
+            T-->>P: 接口回执
+        end
+        P->>M: 依据事实生成积分回复
+        P-->>-C: 待办或完成结果
+    else records
+        C->>+R: 当前用户记录查询
+        R->>T: query_records
+        T-->>R: 献血记录或错误
+        R->>M: 依据记录生成答复
+        R-->>-C: 查询结果
+    else faq
+        C->>+F: 组合只读目标
+        loop 默认最多8步
+            F->>M: 工具目录和已取得观察
+            M-->>F: call_tool 或 finish
+            opt 请求白名单业务/知识工具
+                F->>T: 校验参数并注入身份
+                T-->>F: 观察结果
+            end
+            opt date_offset内置计算
+                F->>F: 验证日期与规则来源后运算
+            end
+        end
+        F->>M: 证据辅助答复与核验
+        F-->>-C: 观察、证据和答复
+    else general
+        C->>M: 问候、能力说明或范围拒绝
+        M-->>C: 模型回复
+    end
+    Note over S,F: OCR注册项保留但当前暂缓；任务队列按顺序暂停和续接
+    C->>DB: 保存checkpoint及脱敏对话
+    C-->>-User: 本轮回复、trace_id与调试信息

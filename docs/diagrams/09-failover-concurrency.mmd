@@ -1,0 +1,44 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    entry_queue["Gradio queue / FastAPI<br/>入口并发与会话锁"]:::entry
+    ModelGateway_call["ModelGateway.call / stream<br/>每次调用共享预算"]:::orchestrator
+    ModelProvider_primary["主服务 ModelProvider<br/>在途限制 / 熔断状态"]:::model
+    validate["结构化输出 / 回复校验<br/>事实与隐私边界"]:::decision
+    ModelProvider_backup["备用 ModelProvider<br/>独立 URL / Key / 额度"]:::model
+    ReplyComposer["ReplyComposer<br/>必要时表达重写一次"]:::model
+    reply_delivery["回复交付<br/>业务 / FAQ 完整后显示"]:::entry
+    unavailable["模型服务不可用<br/>明确错误，不生成业务结论"]:::error
+    tool_receipt["业务工具回执<br/>写结果不随回复失败重试"]:::storage
+    risk_agent["RiskAgent 内容风控<br/>默认 passthrough / 暂缓完善"]:::planned
+    entry_queue --> ModelGateway_call
+    ModelGateway_call --> ModelProvider_primary
+    ModelProvider_primary -->|"返回结果"| validate
+    ModelProvider_primary -->|"超时 / 错误 / 熔断 / 忙"| ModelProvider_backup
+    ModelProvider_backup -->|"备用返回"| validate
+    validate -->|"可用事实"| ReplyComposer
+    ReplyComposer -->|"通过关键检查"| reply_delivery
+    ModelProvider_backup -->|"仍不可用"| unavailable
+    ReplyComposer -->|"校验或改写仍失败"| unavailable
+    tool_receipt -->|"回执事实"| ReplyComposer
+    risk_agent -.->|"仅显式启用后审查"| reply_delivery
+    linkStyle 0 stroke:#738397,stroke-width:1.5px;
+    linkStyle 1 stroke:#738397,stroke-width:1.5px;
+    linkStyle 2 stroke:#738397,stroke-width:1.5px;
+    linkStyle 3 stroke:#CA6B5A,stroke-width:1.5px;
+    linkStyle 4 stroke:#738397,stroke-width:1.5px;
+    linkStyle 5 stroke:#738397,stroke-width:1.5px;
+    linkStyle 6 stroke:#738397,stroke-width:1.5px;
+    linkStyle 7 stroke:#CA6B5A,stroke-width:1.5px;
+    linkStyle 8 stroke:#CA6B5A,stroke-width:1.5px;
+    linkStyle 9 stroke:#8867B4,stroke-width:1.5px;
+    linkStyle 10 stroke:#87909D,stroke-width:1.5px;

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1480" viewBox="0 0 1480 1480">
+<rect width="100%" height="100%" fill="#F7F9FC"/>
+<text x="100" y="66" font-family="sans-serif" font-size="30" fill="#14263D">会话、记忆与缓存</text>
+<text x="100" y="106" font-family="sans-serif" font-size="14" fill="#586B82">本地集成｜业务数据、会话日志、流程快照和标准问答缓存分别管理</text>
+<polyline points="725.0,258 725.0,280.5 270.0,280.5 270.0,330" fill="none" stroke="#8867B4" stroke-width="2"/><polygon points="270.0,330 265.21537912477646,320.0950818741206 274.78462087522354,320.0950818741206" fill="#8867B4"/>
+<rect x="443.5" y="268.5" width="108.0" height="23" fill="#F7F9FC"/><text x="497.5" y="285.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">每轮恢复与保存</text>
+<polyline points="725.0,258 725.0,510" fill="none" stroke="#8867B4" stroke-width="2"/><polygon points="725.0,510 720.2153791247765,500.0950818741206 729.7846208752235,500.0950818741206" fill="#8867B4"/>
+<rect x="664.0" y="372.0" width="122.0" height="23" fill="#F7F9FC"/><text x="725.0" y="389.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">脱敏对话与元数据</text>
+<polyline points="270.0,438 270.0,690" fill="none" stroke="#8867B4" stroke-width="2"/><polygon points="270.0,690 265.21537912477646,680.0950818741205 274.78462087522354,680.0950818741205" fill="#8867B4"/>
+<rect x="216.0" y="552.0" width="108.0" height="23" fill="#F7F9FC"/><text x="270.0" y="569.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">恢复流程后投影</text>
+<polyline points="725.0,618 725.0,690" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,690 720.2153791247765,680.0950818741205 729.7846208752235,680.0950818741205" fill="#738397"/>
+<polyline points="725.0,618 725.0,640.5 1180.0,640.5 1180.0,690" fill="none" stroke="#738397" stroke-width="2"/><polygon points="1180.0,690 1175.2153791247765,680.0950818741205 1184.7846208752235,680.0950818741205" fill="#738397"/>
+<polyline points="725.0,618 725.0,648.5 57,648.5 57,839.5 725.0,839.5 725.0,870" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,870 720.2153791247765,860.0950818741205 729.7846208752235,860.0950818741205" fill="#738397"/>
+<polyline points="1180.0,798 1180.0,870" fill="none" stroke="#738397" stroke-width="2"/><polygon points="1180.0,870 1175.2153791247765,860.0950818741205 1184.7846208752235,860.0950818741205" fill="#738397"/>
+<polyline points="270.0,798 270.0,846.5 1394,846.5 1394,1181.5 725.0,1181.5 725.0,1230" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1230 720.2153791247765,1220.0950818741205 729.7846208752235,1220.0950818741205" fill="#738397"/>
+<polyline points="725.0,798 725.0,819.5 45,819.5 45,1208.5 725.0,1208.5 725.0,1230" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1230 720.2153791247765,1220.0950818741205 729.7846208752235,1220.0950818741205" fill="#738397"/>
+<polyline points="1180.0,978 1180.0,1008.5 57,1008.5 57,1199.5 725.0,1199.5 725.0,1230" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1230 720.2153791247765,1220.0950818741205 729.7846208752235,1220.0950818741205" fill="#738397"/>
+<polyline points="270.0,1158 270.0,1198.5 725.0,1198.5 725.0,1230" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1230 720.2153791247765,1220.0950818741205 729.7846208752235,1220.0950818741205" fill="#738397"/>
+<rect x="415.5" y="1186.5" width="164.0" height="23" fill="#F7F9FC"/><text x="497.5" y="1203.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">完整唯一命中可直接回答</text>
+<rect x="555" y="150" width="340" height="108" rx="12" fill="#EAF2FF" stroke="#3575C5" stroke-width="2"/>
+<text x="725.0" y="199.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">ConversationGraph.invoke</text>
+<text x="725.0" y="223.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">按 user_id + session_id 加锁</text>
+<rect x="100" y="330" width="340" height="108" rx="12" fill="#F2EDFC" stroke="#8867B4" stroke-width="2"/>
+<text x="270.0" y="379.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">SQLAlchemySqliteSaver</text>
+<text x="270.0" y="403.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">独立 checkpoint 文件</text>
+<rect x="555" y="510" width="340" height="108" rx="12" fill="#F2EDFC" stroke="#8867B4" stroke-width="2"/>
+<text x="725.0" y="559.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">AgentRepository</text>
+<text x="725.0" y="583.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">Agent 自有 SQLite 六类表</text>
+<rect x="100" y="690" width="340" height="108" rx="12" fill="#EFF8EC" stroke="#66933B" stroke-width="2"/>
+<text x="270.0" y="739.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">project_short_term_memory</text>
+<text x="270.0" y="763.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">从流程状态投影任务快照</text>
+<rect x="555" y="690" width="340" height="108" rx="12" fill="#F4EEFF" stroke="#8C60BD" stroke-width="2"/>
+<text x="725.0" y="739.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">LongTermMemoryService</text>
+<text x="725.0" y="763.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">明确网点 / 时段偏好</text>
+<rect x="1010" y="690" width="340" height="108" rx="12" fill="#F4EEFF" stroke="#8C60BD" stroke-width="2"/>
+<text x="1180.0" y="739.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">UserProfileSummarizer</text>
+<text x="1180.0" y="763.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">稳定兴趣增量归纳</text>
+<rect x="555" y="870" width="340" height="108" rx="12" fill="#F4EEFF" stroke="#8C60BD" stroke-width="2"/>
+<text x="725.0" y="919.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">ConversationSummarizer</text>
+<text x="725.0" y="943.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">会话标题与摘要</text>
+<rect x="1010" y="870" width="340" height="108" rx="12" fill="#FFF4DE" stroke="#BD8833" stroke-width="2"/>
+<text x="1180.0" y="919.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">隐私 / 原话证据 / 来源门禁</text>
+<text x="1180.0" y="943.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">身份资料不进入兴趣画像</text>
+<rect x="100" y="1050" width="340" height="108" rx="12" fill="#F2EDFC" stroke="#8867B4" stroke-width="2"/>
+<text x="270.0" y="1099.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">StaticFaqCache</text>
+<text x="270.0" y="1123.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">审核 / 版本 / 有效期</text>
+<rect x="555" y="1230" width="340" height="108" rx="12" fill="#F1F5F9" stroke="#64748B" stroke-width="2"/>
+<text x="725.0" y="1279.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">下一轮输入</text>
+<text x="725.0" y="1303.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">按需读取上下文与偏好</text>
+<text x="100" y="1460" font-family="sans-serif" font-size="14" fill="#6B7C90">2026-11-09 · 本地集成快照 · 离线共享几何预览；可编辑源见 smart-blood-donation.drawio</text></svg>

@@ -1,0 +1,46 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    HumanMessage["HumanMessage<br/>用户本轮原话"]:::entry
+    AgentState["AgentState<br/>messages / active_agent / results"]:::storage
+    NavigationDecision["NavigationDecision<br/>意图 / 账户范围 / 任务片段"]:::model
+    AppointmentUnderstanding["AppointmentUnderstanding<br/>action / slots / site_candidates"]:::model
+    PointsUnderstanding["PointsUnderstanding<br/>动作与明确业务字段"]:::model
+    domain_validation["领域执行器与字段契约<br/>格式 / 来源 / 版本 / 确认"]:::decision
+    ToolRegistry["ToolRegistry<br/>入口身份绑定与调用"]:::tool
+    result["本轮 result<br/>业务回执 / 检索观察"]:::storage
+    ReplyComposer["ReplyComposer<br/>模型表达＋后置检查"]:::model
+    AIMessage["AIMessage<br/>用户答复与来源状态"]:::entry
+    HumanMessage --> AgentState
+    AgentState --> NavigationDecision
+    AgentState --> AppointmentUnderstanding
+    AgentState --> PointsUnderstanding
+    NavigationDecision --> domain_validation
+    AppointmentUnderstanding --> domain_validation
+    PointsUnderstanding --> domain_validation
+    domain_validation --> ToolRegistry
+    ToolRegistry --> result
+    result --> ReplyComposer
+    ReplyComposer --> AIMessage
+    AIMessage -->|"add_messages reducer"| AgentState
+    linkStyle 0 stroke:#738397,stroke-width:1.5px;
+    linkStyle 1 stroke:#738397,stroke-width:1.5px;
+    linkStyle 2 stroke:#738397,stroke-width:1.5px;
+    linkStyle 3 stroke:#738397,stroke-width:1.5px;
+    linkStyle 4 stroke:#738397,stroke-width:1.5px;
+    linkStyle 5 stroke:#738397,stroke-width:1.5px;
+    linkStyle 6 stroke:#738397,stroke-width:1.5px;
+    linkStyle 7 stroke:#738397,stroke-width:1.5px;
+    linkStyle 8 stroke:#738397,stroke-width:1.5px;
+    linkStyle 9 stroke:#738397,stroke-width:1.5px;
+    linkStyle 10 stroke:#738397,stroke-width:1.5px;
+    linkStyle 11 stroke:#8867B4,stroke-width:1.5px;

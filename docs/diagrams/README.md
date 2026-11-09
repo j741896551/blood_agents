@@ -1,20 +1,110 @@
-# 智慧献血智能体项目图
+# 架构图与流程图
 
-打开 [smart-blood-donation.drawio](smart-blood-donation.drawio) 可在 diagrams.net / draw.io 中编辑三个页面：
+更新于 2026-11-09。本地图谱快照。GitHub dev 此次仅发布文档，部分功能仍在本地集成。第 12 页为待实现设计。
 
-1. **设计视图**：展示主 Agent 导航、预约与积分子 Agent 跨轮续接、流程终态回交主图。这是控制流设计的概览，不是尚待实现功能清单；OCR 原型暂缓，未画成当前业务子流程。
-2. **当前代码架构**：展示 Gradio/FastAPI/CLI 入口、会话隔离与前置静态问答缓存、SQLite Checkpointer（纯内存库使用 MemorySaver）、主导航与五个编译领域子图、平台模型 API 主备、Mock 工具层和 FAQ 检索。积分与预约均可跨轮；记录和 FAQ 为单轮；OCR 子图仅保留原型、暂缓开发。
-3. **当前预约多轮流程**：概括预约意图识别、参数收集、历史和时段查询、预览确认、Mock 接口提交及等待用户下一轮。此页侧重新建预约示意，不覆盖已实现的预约查询、取消已提交预约和签到全部分支；详见代码及项目清单。
+[可编辑 draw.io](smart-blood-donation.drawio) · [离线图册](index.html) · [系统说明](../ARCHITECTURE.md) · [构建验证](VALIDATION.md)
 
-图中节点的 `data-source` 对应绘图时的源码快照。第 2 页的 BGE + FAISS / Milvus Lite 与 bge-reranker 是**已实现、经本地专项验证的可选检索后端**；默认仍用轻量关键词检索，不表示远端 Milvus 或生产级 RAG 已验证。模型生成通过第三方平台的 OpenAI 兼容 API；真实跨供应商备用切换尚未验证。**图中的 MCP“仅礼品目录”是 2026-10-21 快照**：当前代码已扩展为礼品、积分、献血记录三个只读工具，经 stdio MCP 转发至独立 Mock HTTP 服务；其余业务查询/写入走 HTTP adapter，图纸本轮尚未重新绘制。OCR 和 LoRA 当前暂缓；vLLM/TGI 只是 `deploy/` 历史模板，非当前开发或验收范围。
+PNG/SVG 是同一份节点、文字和正交几何生成的离线预览，**不是 draw.io 原生导出**。Mermaid 为可维护文本源；没有依赖在线 CDN。
 
-本图保留原有三页和节点布局，只校正已变化的技术事实。第 1 页是设计视角，第 2、3 页是代码视角；简化连线不等于完整函数调用轨迹。源码入口和功能边界以 [README 目录说明](../../README.md#代码目录怎么读)、[中文代码解读](../CODE_WALKTHROUGH.md) 与 [项目状态](../../PROJECT.md) 为准。
+蓝色为编排，绿色为领域/工具，紫色为模型/存储，橙色为条件/外部服务，灰色虚线为暂缓或规划。实线关系有代码来源；图中聚合节点代表同一职责的组件集合。
 
-三个 `*-preview.png` 是由 [build_diagrams.py](build_diagrams.py) 按相同节点/边定义生成的**离线示意预览**，不是 draw.io 原生渲染。更新后可重新生成并做结构校验：
+| 页 | 内容 | 文件 |
+| --- | --- | --- |
+| 01 | 系统全景 | [PNG](01-system-context.png) / [SVG](01-system-context.svg) / [Mermaid](01-system-context.mmd) |
+| 02 | 主导航与多智能体编排 | [PNG](02-orchestration.png) / [SVG](02-orchestration.svg) / [Mermaid](02-orchestration.mmd) |
+| 03 | 预约全流程 | [PNG](03-appointment.png) / [SVG](03-appointment.svg) / [Mermaid](03-appointment.mmd) |
+| 04 | 爱心积分与纪念品 | [PNG](04-points.png) / [SVG](04-points.svg) / [Mermaid](04-points.mmd) |
+| 05 | 记录查询与组合只读问答 | [PNG](05-records-faq.png) / [SVG](05-records-faq.svg) / [Mermaid](05-records-faq.mmd) |
+| 06 | RAG 知识库生命周期 | [PNG](06-rag-pipeline.png) / [SVG](06-rag-pipeline.svg) / [Mermaid](06-rag-pipeline.mmd) |
+| 07 | 业务接口与三种后端模式 | [PNG](07-business-transports.png) / [SVG](07-business-transports.svg) / [Mermaid](07-business-transports.mmd) |
+| 08 | 会话、记忆与缓存 | [PNG](08-memory-cache.png) / [SVG](08-memory-cache.svg) / [Mermaid](08-memory-cache.mmd) |
+| 09 | 模型容灾、并发与回复边界 | [PNG](09-failover-concurrency.png) / [SVG](09-failover-concurrency.svg) / [Mermaid](09-failover-concurrency.mmd) |
+| 10 | 工具注册目录 | [PNG](10-tool-catalog.png) / [SVG](10-tool-catalog.svg) / [Mermaid](10-tool-catalog.mmd) |
+| 11 | 结构化状态与数据流 | [PNG](11-state-dataflow.png) / [SVG](11-state-dataflow.svg) / [Mermaid](11-state-dataflow.mmd) |
+| 12 | 待实现：统一临时确认机制 | [PNG](12-planned-confirmation.png) / [SVG](12-planned-confirmation.svg) / [Mermaid](12-planned-confirmation.mmd) |
 
-```bash
-.venv312/bin/python docs/diagrams/build_diagrams.py
-.venv312/bin/python /Users/jiangnian/.codex/skills/drawio-skill/scripts/validate.py docs/diagrams/smart-blood-donation.drawio --score
-```
+## 阅读与来源
 
-若本机安装 draw.io CLI，可另外导出原生 PNG 做视觉复核；本次只完成离线预览与结构校验，未把它们当作原生渲染证据。
+### 系统全景
+
+这是系统边界图。业务数据不属于 Agent 数据库；大模型由平台 API 提供，本地 BGE 只承担编码与精排。
+
+本地快照源码位置 `blood_agents/orchestration/conversation.py:23`；`blood_agents/business/transport.py:8`。
+
+### 主导航与多智能体编排
+
+每轮都会经过主导航；活动业务通过 checkpoint 续接。领域子图不是并行 fan-out，主图也没有独立 Skill 加载器。 图中领域派发框聚合两种路径：单任务由supervisor直派，多任务才经TaskCoordinator；不是所有请求都执行队列节点。
+
+本地快照源码位置 `blood_agents/orchestration/graph.py:618`；`blood_agents/orchestration/agent_registry.py:46`。
+
+### 预约全流程
+
+收集无固定字段顺序，任何修改会撤销旧提交预览；局部确认只选网点。取消、签到有各自的待确认目标和回执，不能与退出未提交意向混称。
+
+本地快照源码位置 `blood_agents/domains/appointment.py:372`；`blood_agents/orchestration/graph.py:415`。
+
+### 爱心积分与纪念品
+
+地址保存确认与兑换下单确认是两个动作。当前只传接口已有的介绍、规格与图片，不把描述性型号猜成可下单 SKU。
+
+本地快照源码位置 `blood_agents/domains/points.py:41`；`blood_agents/llm/points_query_reply.py:10`。
+
+### 记录查询与组合只读问答
+
+个人下次献血参考日期不走固定关键词工作流；模型自行决定查询记录和规则，再引用来源做运算。无充分证据不能生成医学资格结论。
+
+本地快照源码位置 `blood_agents/llm/query_agent.py:92`；`blood_agents/domains/records.py:8`。
+
+### RAG 知识库生命周期
+
+memory 是内存词面检索，不是向量数据库，也不是长期记忆。当前融合不是 BM25 或 RRF；草稿不进入聊天，文档冲突没有自动版本优先级硬过滤。
+
+本地快照源码位置 `blood_agents/knowledge/rag.py:83`；`blood_agents/knowledge/workspace.py:248`；`blood_agents/knowledge/workspace.py:423`。
+
+### 业务接口与三种后端模式
+
+HTTP 演示由独立进程监听 8001，和 Gradio 分开。MCP 服务端可选文件后端；切换模式不迁移历史地址或订单。local 仅为旧测试兼容。
+
+本地快照源码位置 `blood_agents/business/transport.py:8`；`blood_agents/business/mcp_server.py:116`。
+
+### 会话、记忆与缓存
+
+标题摘要不是预约授权；缓存仅适用于无个人/实时业务依赖的标准问答。会话表与 checkpoint 为不同 SQLite 文件，保留期清理不会自动删除所有存储。
+
+本地快照源码位置 `blood_agents/orchestration/conversation.py:216`；`blood_agents/storage/models.py:13`。
+
+### 模型容灾、并发与回复边界
+
+默认主40秒、备20秒、单次预算60秒，不是整轮对话 SLA。超时后台请求可能稍后结束；普通 general 的保守流式不代表业务回答支持分段风控。
+
+本地快照源码位置 `blood_agents/llm/model_gateway.py:141`；`blood_agents/llm/reply_composer.py:1060`。
+
+### 工具注册目录
+
+这是组件目录，不表示这些工具并行执行。模型只读循环仅能看到显式 consultation 白名单，个人工具由服务端注入 user_id；写工具只能由领域确认流程调用。
+
+本地快照源码位置 `blood_agents/business/tools.py:158`。
+
+### 结构化状态与数据流
+
+action=confirm 是模型动作，不等于预约已经成功；agent_status=completed 表示流程结束，也可能是退出或失败。当前仍混有固定词和正则校正。
+
+本地快照源码位置 `blood_agents/core/models.py:108`；`blood_agents/orchestration/router.py:427`。
+
+### 待实现：统一临时确认机制
+
+这是设计视图；当前没有通用 ConfirmationItem 队列。普通字段不逐个确认，修改优先于同句中的确认，模型语义准确率仍需真实多轮评测。
+
+本地快照源码位置 `PROJECT.md:55`。
+
+### 一轮消息：主导航与各领域分支
+
+alt代表不同领域分支，不是一个请求同时运行全部Agent。每轮结束后保存状态，后续输入再续接；OCR只保留原型注册。
+
+[Mermaid时序源](13-runtime-sequence.mmd) · [内嵌预览](SEQUENCES.md)
+
+### 跨会话并发与平台主备边界
+
+并行发生在不同会话请求间；相同会话由同一进程内锁串行。示例表达可配置在途预算，不表示默认额度能同时容纳所有请求，也没有多Worker分布式锁。
+
+[Mermaid时序源](14-concurrency-sequence.mmd) · [内嵌预览](SEQUENCES.md)

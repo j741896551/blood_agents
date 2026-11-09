@@ -1,0 +1,52 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    appointment_understand["appointment_understand<br/>模型提取 action / slots"]:::orchestrator
+    AppointmentToolPlanner["AppointmentToolPlanner<br/>只读工具规划"]:::model
+    query_sites["资料 / 历史 / 号源查询<br/>可信入口 user_id"]:::tool
+    _site_clarification["_site_clarification<br/>未知网点 / 候选澄清"]:::decision
+    missing["检查必填与参数约束<br/>不足则 collecting"]:::decision
+    query_actions["query / cancel / checkin<br/>查询或单独确认已有记录"]:::tool
+    awaiting_confirmation["awaiting_confirmation<br/>生成完整预约预览"]:::agent
+    preview_delivered["preview_delivered<br/>可交付回复后允许确认"]:::decision
+    submit_appointment["submit_appointment<br/>重查号源 / 幂等提交"]:::tool
+    appointment_reply["appointment_reply<br/>根据接口回执模型表达"]:::model
+    appointment_handoff["appointment_handoff<br/>等待或清草稿并回交"]:::orchestrator
+    User_reply["用户补充 / 修改 / 澄清<br/>下一轮重新理解"]:::entry
+    appointment_understand --> AppointmentToolPlanner
+    AppointmentToolPlanner --> query_sites
+    appointment_understand -->|"其他预约操作"| query_actions
+    query_sites --> missing
+    query_sites -->|"名称未匹配"| _site_clarification
+    _site_clarification -->|"局部选择"| User_reply
+    missing -->|"缺项 / 无可用组合"| User_reply
+    User_reply -->|"下一轮"| appointment_understand
+    missing -->|"资料完整且组合可约"| awaiting_confirmation
+    awaiting_confirmation --> preview_delivered
+    preview_delivered -->|"后续明确最终确认"| submit_appointment
+    submit_appointment -->|"成功 / 拒绝"| appointment_reply
+    query_actions -->|"查询结果 / 操作回执"| appointment_reply
+    appointment_reply --> appointment_handoff
+    linkStyle 0 stroke:#738397,stroke-width:1.5px;
+    linkStyle 1 stroke:#738397,stroke-width:1.5px;
+    linkStyle 2 stroke:#738397,stroke-width:1.5px;
+    linkStyle 3 stroke:#738397,stroke-width:1.5px;
+    linkStyle 4 stroke:#738397,stroke-width:1.5px;
+    linkStyle 5 stroke:#738397,stroke-width:1.5px;
+    linkStyle 6 stroke:#738397,stroke-width:1.5px;
+    linkStyle 7 stroke:#738397,stroke-width:1.5px;
+    linkStyle 8 stroke:#738397,stroke-width:1.5px;
+    linkStyle 9 stroke:#738397,stroke-width:1.5px;
+    linkStyle 10 stroke:#738397,stroke-width:1.5px;
+    linkStyle 11 stroke:#738397,stroke-width:1.5px;
+    linkStyle 12 stroke:#738397,stroke-width:1.5px;
+    linkStyle 13 stroke:#738397,stroke-width:1.5px;

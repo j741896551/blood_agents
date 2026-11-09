@@ -1,0 +1,31 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    query_user_profile["query_user_profile<br/>查询 / 检索工具"]:::tool
+    query_points["query_points<br/>查询 / 检索工具"]:::tool
+    list_rewards["list_rewards<br/>查询 / 检索工具"]:::tool
+    redeem_reward["redeem_reward<br/>需确认的写工具"]:::decision
+    query_redemption_orders["query_redemption_orders<br/>查询 / 检索工具"]:::tool
+    cancel_redemption_order["cancel_redemption_order<br/>需确认的写工具"]:::decision
+    query_shipping_addresses["query_shipping_addresses<br/>查询 / 检索工具"]:::tool
+    save_shipping_address["save_shipping_address<br/>需确认的写工具"]:::decision
+    set_default_shipping_address["set_default_shipping_address<br/>需确认的写工具"]:::decision
+    set_order_shipping_address["set_order_shipping_address<br/>需确认的写工具"]:::decision
+    query_records["query_records<br/>查询 / 检索工具"]:::tool
+    query_appointment_history["query_appointment_history<br/>查询 / 检索工具"]:::tool
+    query_user_appointments["query_user_appointments<br/>查询 / 检索工具"]:::tool
+    submit_appointment["submit_appointment<br/>需确认的写工具"]:::decision
+    cancel_appointment["cancel_appointment<br/>需确认的写工具"]:::decision
+    checkin_appointment["checkin_appointment<br/>需确认的写工具"]:::decision
+    query_sites["query_sites<br/>查询 / 检索工具"]:::tool
+    knowledge_search["knowledge_search<br/>查询 / 检索工具"]:::tool
+    ocr_extract["ocr_extract<br/>OCR原型 / 暂缓"]:::planned

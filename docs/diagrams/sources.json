@@ -1,0 +1,382 @@
+{
+  "generated": "2026-11-09",
+  "framework": "LangGraph",
+  "views": [
+    {
+      "id": "01-system-context",
+      "title": "系统全景",
+      "subtitle": "本地集成｜模型理解与表达，程序编排与检查，业务后端决定事实",
+      "planned": false,
+      "guide": "这是系统边界图。业务数据不属于 Agent 数据库；大模型由平台 API 提供，本地 BGE 只承担编码与精排。",
+      "sources": [
+        {
+          "path": "blood_agents/orchestration/conversation.py",
+          "anchor": "class ConversationGraph",
+          "line": 23
+        },
+        {
+          "path": "blood_agents/business/transport.py",
+          "anchor": "def business_api_from_env",
+          "line": 8
+        }
+      ],
+      "node_count": 6,
+      "edge_count": 5
+    },
+    {
+      "id": "02-orchestration",
+      "title": "主导航与多智能体编排",
+      "subtitle": "本地集成｜四个活动业务领域＋一个暂缓的 OCR 注册项；多任务顺序执行",
+      "planned": false,
+      "guide": "每轮都会经过主导航；活动业务通过 checkpoint 续接。领域子图不是并行 fan-out，主图也没有独立 Skill 加载器。 图中领域派发框聚合两种路径：单任务由supervisor直派，多任务才经TaskCoordinator；不是所有请求都执行队列节点。",
+      "sources": [
+        {
+          "path": "blood_agents/orchestration/graph.py",
+          "anchor": "builder = StateGraph(AgentState)",
+          "line": 618
+        },
+        {
+          "path": "blood_agents/orchestration/agent_registry.py",
+          "anchor": "class AgentRegistry",
+          "line": 46
+        }
+      ],
+      "node_count": 13,
+      "edge_count": 17
+    },
+    {
+      "id": "03-appointment",
+      "title": "预约全流程",
+      "subtitle": "本地集成｜局部网点澄清是专用分支；统一临时确认队列仍待实现",
+      "planned": false,
+      "guide": "收集无固定字段顺序，任何修改会撤销旧提交预览；局部确认只选网点。取消、签到有各自的待确认目标和回执，不能与退出未提交意向混称。",
+      "sources": [
+        {
+          "path": "blood_agents/domains/appointment.py",
+          "anchor": "if (slots.get(\"status\") == \"awaiting_confirmation\" and slots.get(\"preview_delivered\")",
+          "line": 372
+        },
+        {
+          "path": "blood_agents/orchestration/graph.py",
+          "anchor": "def appointment_handoff",
+          "line": 415
+        }
+      ],
+      "node_count": 12,
+      "edge_count": 14
+    },
+    {
+      "id": "04-points",
+      "title": "爱心积分与纪念品",
+      "subtitle": "本地集成｜读请求直接查询；兑换、地址保存、取消订单均先预览后确认",
+      "planned": false,
+      "guide": "地址保存确认与兑换下单确认是两个动作。当前只传接口已有的介绍、规格与图片，不把描述性型号猜成可下单 SKU。",
+      "sources": [
+        {
+          "path": "blood_agents/domains/points.py",
+          "anchor": "def points_agent",
+          "line": 41
+        },
+        {
+          "path": "blood_agents/llm/points_query_reply.py",
+          "anchor": "class PointsQueryText",
+          "line": 10
+        }
+      ],
+      "node_count": 13,
+      "edge_count": 17
+    },
+    {
+      "id": "05-records-faq",
+      "title": "记录查询与组合只读问答",
+      "subtitle": "本地集成｜模型有界选择工具、读取观察、再决定下一步；使用结构化 JSON",
+      "planned": false,
+      "guide": "个人下次献血参考日期不走固定关键词工作流；模型自行决定查询记录和规则，再引用来源做运算。无充分证据不能生成医学资格结论。",
+      "sources": [
+        {
+          "path": "blood_agents/llm/query_agent.py",
+          "anchor": "class ReadOnlyQueryAgent",
+          "line": 92
+        },
+        {
+          "path": "blood_agents/domains/records.py",
+          "anchor": "def records_agent",
+          "line": 8
+        }
+      ],
+      "node_count": 12,
+      "edge_count": 15
+    },
+    {
+      "id": "06-rag-pipeline",
+      "title": "RAG 知识库生命周期",
+      "subtitle": "本地集成｜草稿测试与正式索引分离；没有预置发布语料时按空库处理",
+      "planned": false,
+      "guide": "memory 是内存词面检索，不是向量数据库，也不是长期记忆。当前融合不是 BM25 或 RRF；草稿不进入聊天，文档冲突没有自动版本优先级硬过滤。",
+      "sources": [
+        {
+          "path": "blood_agents/knowledge/rag.py",
+          "anchor": "def search(self, query",
+          "line": 83
+        },
+        {
+          "path": "blood_agents/knowledge/workspace.py",
+          "anchor": "def confirm_cleaning",
+          "line": 248
+        },
+        {
+          "path": "blood_agents/knowledge/workspace.py",
+          "anchor": "def publish",
+          "line": 423
+        }
+      ],
+      "node_count": 13,
+      "edge_count": 14
+    },
+    {
+      "id": "07-business-transports",
+      "title": "业务接口与三种后端模式",
+      "subtitle": "本地集成｜一个模式覆盖全部业务读写，错误不跨模式回退",
+      "planned": false,
+      "guide": "HTTP 演示由独立进程监听 8001，和 Gradio 分开。MCP 服务端可选文件后端；切换模式不迁移历史地址或订单。local 仅为旧测试兼容。",
+      "sources": [
+        {
+          "path": "blood_agents/business/transport.py",
+          "anchor": "def business_api_from_env",
+          "line": 8
+        },
+        {
+          "path": "blood_agents/business/mcp_server.py",
+          "anchor": "for name in OPERATIONS",
+          "line": 116
+        }
+      ],
+      "node_count": 10,
+      "edge_count": 11
+    },
+    {
+      "id": "08-memory-cache",
+      "title": "会话、记忆与缓存",
+      "subtitle": "本地集成｜业务数据、会话日志、流程快照和标准问答缓存分别管理",
+      "planned": false,
+      "guide": "标题摘要不是预约授权；缓存仅适用于无个人/实时业务依赖的标准问答。会话表与 checkpoint 为不同 SQLite 文件，保留期清理不会自动删除所有存储。",
+      "sources": [
+        {
+          "path": "blood_agents/orchestration/conversation.py",
+          "anchor": "def invoke(self, state",
+          "line": 216
+        },
+        {
+          "path": "blood_agents/storage/models.py",
+          "anchor": "class ConversationTurn",
+          "line": 13
+        }
+      ],
+      "node_count": 10,
+      "edge_count": 11
+    },
+    {
+      "id": "09-failover-concurrency",
+      "title": "模型容灾、并发与回复边界",
+      "subtitle": "本地集成｜同会话串行、跨会话可并行；不是领域子智能体并行执行",
+      "planned": false,
+      "guide": "默认主40秒、备20秒、单次预算60秒，不是整轮对话 SLA。超时后台请求可能稍后结束；普通 general 的保守流式不代表业务回答支持分段风控。",
+      "sources": [
+        {
+          "path": "blood_agents/llm/model_gateway.py",
+          "anchor": "def call(self, messages",
+          "line": 141
+        },
+        {
+          "path": "blood_agents/llm/reply_composer.py",
+          "anchor": "can_stream = (",
+          "line": 1060
+        }
+      ],
+      "node_count": 10,
+      "edge_count": 11
+    },
+    {
+      "id": "10-tool-catalog",
+      "title": "工具注册目录",
+      "subtitle": "本地集成｜19 项 ToolSpec，其中 OCR 暂缓；date_offset 是只读循环内置运算",
+      "planned": false,
+      "guide": "这是组件目录，不表示这些工具并行执行。模型只读循环仅能看到显式 consultation 白名单，个人工具由服务端注入 user_id；写工具只能由领域确认流程调用。",
+      "sources": [
+        {
+          "path": "blood_agents/business/tools.py",
+          "anchor": "specs = [",
+          "line": 158
+        }
+      ],
+      "node_count": 19,
+      "edge_count": 0
+    },
+    {
+      "id": "11-state-dataflow",
+      "title": "结构化状态与数据流",
+      "subtitle": "本地集成｜模型输出动作和槽位，程序保存流程状态并执行工具",
+      "planned": false,
+      "guide": "action=confirm 是模型动作，不等于预约已经成功；agent_status=completed 表示流程结束，也可能是退出或失败。当前仍混有固定词和正则校正。",
+      "sources": [
+        {
+          "path": "blood_agents/core/models.py",
+          "anchor": "class AgentState",
+          "line": 108
+        },
+        {
+          "path": "blood_agents/orchestration/router.py",
+          "anchor": "def interpret_appointment",
+          "line": 427
+        }
+      ],
+      "node_count": 10,
+      "edge_count": 12
+    },
+    {
+      "id": "12-planned-confirmation",
+      "title": "待实现：统一临时确认机制",
+      "subtitle": "待实现｜任务3l / 3m，不能作为当前已经具备的能力",
+      "planned": true,
+      "guide": "这是设计视图；当前没有通用 ConfirmationItem 队列。普通字段不逐个确认，修改优先于同句中的确认，模型语义准确率仍需真实多轮评测。",
+      "sources": [
+        {
+          "path": "PROJECT.md",
+          "anchor": "**3l：临时确认队列与最终确认",
+          "line": 55
+        }
+      ],
+      "node_count": 9,
+      "edge_count": 10
+    }
+  ],
+  "tools": [
+    {
+      "name": "query_user_profile",
+      "line": 159,
+      "mutating": false
+    },
+    {
+      "name": "query_points",
+      "line": 161,
+      "mutating": false
+    },
+    {
+      "name": "list_rewards",
+      "line": 163,
+      "mutating": false
+    },
+    {
+      "name": "redeem_reward",
+      "line": 165,
+      "mutating": true
+    },
+    {
+      "name": "query_redemption_orders",
+      "line": 167,
+      "mutating": false
+    },
+    {
+      "name": "cancel_redemption_order",
+      "line": 169,
+      "mutating": true
+    },
+    {
+      "name": "query_shipping_addresses",
+      "line": 171,
+      "mutating": false
+    },
+    {
+      "name": "save_shipping_address",
+      "line": 173,
+      "mutating": true
+    },
+    {
+      "name": "set_default_shipping_address",
+      "line": 175,
+      "mutating": true
+    },
+    {
+      "name": "set_order_shipping_address",
+      "line": 177,
+      "mutating": true
+    },
+    {
+      "name": "query_records",
+      "line": 179,
+      "mutating": false
+    },
+    {
+      "name": "query_appointment_history",
+      "line": 181,
+      "mutating": false
+    },
+    {
+      "name": "query_user_appointments",
+      "line": 183,
+      "mutating": false
+    },
+    {
+      "name": "submit_appointment",
+      "line": 185,
+      "mutating": true
+    },
+    {
+      "name": "cancel_appointment",
+      "line": 187,
+      "mutating": true
+    },
+    {
+      "name": "checkin_appointment",
+      "line": 189,
+      "mutating": true
+    },
+    {
+      "name": "query_sites",
+      "line": 191,
+      "mutating": false
+    },
+    {
+      "name": "knowledge_search",
+      "line": 193,
+      "mutating": false
+    },
+    {
+      "name": "ocr_extract",
+      "line": 200,
+      "mutating": false
+    }
+  ],
+  "sequences": [
+    {
+      "id": "13-runtime-sequence",
+      "sources": [
+        {
+          "path": "blood_agents/orchestration/conversation.py",
+          "anchor": "def invoke(self, state",
+          "line": 216
+        },
+        {
+          "path": "blood_agents/orchestration/graph.py",
+          "anchor": "def build_graph",
+          "line": 49
+        }
+      ]
+    },
+    {
+      "id": "14-concurrency-sequence",
+      "sources": [
+        {
+          "path": "blood_agents/orchestration/conversation.py",
+          "anchor": "def _session_lock",
+          "line": 46
+        },
+        {
+          "path": "blood_agents/llm/model_gateway.py",
+          "anchor": "def call(self, messages",
+          "line": 141
+        }
+      ]
+    }
+  ]
+}

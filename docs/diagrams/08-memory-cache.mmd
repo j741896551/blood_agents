@@ -1,0 +1,44 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    ConversationGraph["ConversationGraph.invoke<br/>按 user_id + session_id 加锁"]:::orchestrator
+    SQLAlchemySqliteSaver["SQLAlchemySqliteSaver<br/>独立 checkpoint 文件"]:::storage
+    AgentRepository["AgentRepository<br/>Agent 自有 SQLite 六类表"]:::storage
+    project_short_term_memory["project_short_term_memory<br/>从流程状态投影任务快照"]:::tool
+    LongTermMemoryService["LongTermMemoryService<br/>明确网点 / 时段偏好"]:::model
+    UserProfileSummarizer["UserProfileSummarizer<br/>稳定兴趣增量归纳"]:::model
+    ConversationSummarizer["ConversationSummarizer<br/>会话标题与摘要"]:::model
+    privacy["隐私 / 原话证据 / 来源门禁<br/>身份资料不进入兴趣画像"]:::decision
+    StaticFaqCache["StaticFaqCache<br/>审核 / 版本 / 有效期"]:::storage
+    next_turn["下一轮输入<br/>按需读取上下文与偏好"]:::entry
+    ConversationGraph -->|"每轮恢复与保存"| SQLAlchemySqliteSaver
+    ConversationGraph -->|"脱敏对话与元数据"| AgentRepository
+    SQLAlchemySqliteSaver -->|"恢复流程后投影"| project_short_term_memory
+    AgentRepository --> LongTermMemoryService
+    AgentRepository --> UserProfileSummarizer
+    AgentRepository --> ConversationSummarizer
+    UserProfileSummarizer --> privacy
+    project_short_term_memory --> next_turn
+    LongTermMemoryService --> next_turn
+    privacy --> next_turn
+    StaticFaqCache -->|"完整唯一命中可直接回答"| next_turn
+    linkStyle 0 stroke:#8867B4,stroke-width:1.5px;
+    linkStyle 1 stroke:#8867B4,stroke-width:1.5px;
+    linkStyle 2 stroke:#8867B4,stroke-width:1.5px;
+    linkStyle 3 stroke:#738397,stroke-width:1.5px;
+    linkStyle 4 stroke:#738397,stroke-width:1.5px;
+    linkStyle 5 stroke:#738397,stroke-width:1.5px;
+    linkStyle 6 stroke:#738397,stroke-width:1.5px;
+    linkStyle 7 stroke:#738397,stroke-width:1.5px;
+    linkStyle 8 stroke:#738397,stroke-width:1.5px;
+    linkStyle 9 stroke:#738397,stroke-width:1.5px;
+    linkStyle 10 stroke:#738397,stroke-width:1.5px;
