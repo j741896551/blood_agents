@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "key": "ocr_upload_scope",
+      "version": "2026-10-21.1",
+      "expires_on": "2027-01-01",
+      "approved": true,
+      "review_basis": "user_confirmed_project_scope",
+      "questions": ["现在可以上传图片识别吗", "这里支持上传图片做OCR吗"],
+      "answer": "当前网页暂不支持直接上传图片识别；图片识别能力尚未开放。"
+    }
+  ]
+}

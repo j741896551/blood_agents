@@ -1,0 +1,53 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    rag_management["Gradio 知识库管理<br/>上传 / 清洗 / 切分 / 发布"]:::entry
+    KnowledgeWorkspace["KnowledgeWorkspace<br/>提取完整 PDF / Markdown / TXT"]:::storage
+    confirm_cleaning["核对原件与提取结果<br/>确认清洗后的正文"]:::decision
+    DocumentChunkingPipeline["DocumentChunkingPipeline<br/>章节 / 段落 / 滑窗 / 语义"]:::tool
+    temporary_retriever["临时 BGE 召回<br/>单题测试 / 策略对比"]:::tool
+    confirm_evaluation["confirm_chunking_evaluation<br/>人工确认当前参数合格"]:::decision
+    publish["publish + refresh<br/>构建成功才替换活动检索器"]:::orchestrator
+    default_retriever["default_retriever<br/>当前已发布文档集合"]:::storage
+    BGEEncoder["BGEEncoder<br/>bge-large-zh-v1.5"]:::model
+    vector_store["FAISSVectorStore<br/>或 MilvusVectorStore<br/>向量召回 / 绝对阈值"]:::storage
+    HybridRetriever["HybridRetriever.search<br/>词面分数＋向量分数相加"]:::tool
+    BGEReranker["BGEReranker（可选）<br/>只排序已过门槛的候选"]:::model
+    knowledge_evidence["文本 / 来源 / 元数据<br/>正式索引检索 / FAQ 证据核验"]:::entry
+    rag_management --> KnowledgeWorkspace
+    KnowledgeWorkspace -->|"待确认草稿"| confirm_cleaning
+    confirm_cleaning -->|"确认正文"| DocumentChunkingPipeline
+    DocumentChunkingPipeline -->|"发布前测试"| temporary_retriever
+    temporary_retriever -->|"人工检查"| confirm_evaluation
+    confirm_evaluation --> publish
+    publish --> default_retriever
+    BGEEncoder --> vector_store
+    default_retriever --> HybridRetriever
+    default_retriever -->|"启用向量后端时"| BGEEncoder
+    vector_store --> HybridRetriever
+    HybridRetriever -->|"启用精排时"| BGEReranker
+    HybridRetriever -->|"未启用精排"| knowledge_evidence
+    BGEReranker --> knowledge_evidence
+    linkStyle 0 stroke:#738397,stroke-width:1.5px;
+    linkStyle 1 stroke:#738397,stroke-width:1.5px;
+    linkStyle 2 stroke:#738397,stroke-width:1.5px;
+    linkStyle 3 stroke:#738397,stroke-width:1.5px;
+    linkStyle 4 stroke:#738397,stroke-width:1.5px;
+    linkStyle 5 stroke:#738397,stroke-width:1.5px;
+    linkStyle 6 stroke:#738397,stroke-width:1.5px;
+    linkStyle 7 stroke:#738397,stroke-width:1.5px;
+    linkStyle 8 stroke:#738397,stroke-width:1.5px;
+    linkStyle 9 stroke:#738397,stroke-width:1.5px;
+    linkStyle 10 stroke:#738397,stroke-width:1.5px;
+    linkStyle 11 stroke:#738397,stroke-width:1.5px;
+    linkStyle 12 stroke:#738397,stroke-width:1.5px;
+    linkStyle 13 stroke:#738397,stroke-width:1.5px;

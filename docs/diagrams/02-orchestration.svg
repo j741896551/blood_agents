@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1935" height="1480" viewBox="0 0 1935 1480">
+<rect width="100%" height="100%" fill="#F7F9FC"/>
+<text x="100" y="66" font-family="sans-serif" font-size="30" fill="#14263D">主导航与多智能体编排</text>
+<text x="100" y="106" font-family="sans-serif" font-size="14" fill="#586B82">本地集成｜四个活动业务领域＋一个暂缓的 OCR 注册项；多任务顺序执行</text>
+<polyline points="952.5,258 952.5,330" fill="none" stroke="#738397" stroke-width="2"/><polygon points="952.5,330 947.7153791247765,320.0950818741206 957.2846208752235,320.0950818741206" fill="#738397"/>
+<polyline points="952.5,438 952.5,510" fill="none" stroke="#738397" stroke-width="2"/><polygon points="952.5,510 947.7153791247765,500.0950818741206 957.2846208752235,500.0950818741206" fill="#738397"/>
+<rect x="926.5" y="462.0" width="52.0" height="23" fill="#F7F9FC"/><text x="952.5" y="479.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">未命中</text>
+<polyline points="952.5,438 952.5,477.5 69,477.5 69,1190.5 952.5,1190.5 952.5,1230" fill="none" stroke="#738397" stroke-width="2"/><polygon points="952.5,1230 947.7153791247765,1220.0950818741205 957.2846208752235,1220.0950818741205" fill="#738397"/>
+<rect x="477.75" y="465.5" width="66.0" height="23" fill="#F7F9FC"/><text x="510.75" y="482.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">缓存命中</text>
+<polyline points="440,564.0 782.5,564.0" fill="none" stroke="#8867B4" stroke-width="2"/><polygon points="782.5,564.0 772.5950818741205,568.7846208752235 772.5950818741205,559.2153791247765" fill="#8867B4"/>
+<rect x="578.25" y="552.0" width="66.0" height="23" fill="#F7F9FC"/><text x="611.25" y="569.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">能力目录</text>
+<polyline points="1122.5,564.0 1465,564.0" fill="none" stroke="#738397" stroke-width="2"/><polygon points="1465,564.0 1455.0950818741205,568.7846208752235 1455.0950818741205,559.2153791247765" fill="#738397"/>
+<rect x="1262.25" y="552.0" width="63.0" height="23" fill="#F7F9FC"/><text x="1293.75" y="569.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">general</text>
+<polyline points="952.5,618 952.5,690" fill="none" stroke="#738397" stroke-width="2"/><polygon points="952.5,690 947.7153791247765,680.0950818741205 957.2846208752235,680.0950818741205" fill="#738397"/>
+<rect x="919.5" y="642.0" width="66.0" height="23" fill="#F7F9FC"/><text x="952.5" y="659.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">领域请求</text>
+<polyline points="1122.5,744.0 1465,744.0" fill="none" stroke="#87909D" stroke-width="2" stroke-dasharray="7 5"/><polygon points="1465,744.0 1455.0950818741205,748.7846208752235 1455.0950818741205,739.2153791247765" fill="#87909D"/>
+<rect x="1253.75" y="732.0" width="80.0" height="23" fill="#F7F9FC"/><text x="1293.75" y="749.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">暂缓注册项</text>
+<polyline points="952.5,798 952.5,847.5 270.0,847.5 270.0,870" fill="none" stroke="#738397" stroke-width="2"/><polygon points="270.0,870 265.21537912477646,860.0950818741205 274.78462087522354,860.0950818741205" fill="#738397"/>
+<rect x="592.25" y="835.5" width="38.0" height="23" fill="#F7F9FC"/><text x="611.25" y="852.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">预约</text>
+<polyline points="952.5,798 952.5,820.5 725.0,820.5 725.0,870" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,870 720.2153791247765,860.0950818741205 729.7846208752235,860.0950818741205" fill="#738397"/>
+<rect x="819.75" y="808.5" width="38.0" height="23" fill="#F7F9FC"/><text x="838.75" y="825.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">积分</text>
+<polyline points="952.5,798 952.5,829.5 1180.0,829.5 1180.0,870" fill="none" stroke="#738397" stroke-width="2"/><polygon points="1180.0,870 1175.2153791247765,860.0950818741205 1184.7846208752235,860.0950818741205" fill="#738397"/>
+<rect x="1047.25" y="817.5" width="38.0" height="23" fill="#F7F9FC"/><text x="1066.25" y="834.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">记录</text>
+<polyline points="952.5,798 952.5,838.5 1635.0,838.5 1635.0,870" fill="none" stroke="#738397" stroke-width="2"/><polygon points="1635.0,870 1630.2153791247765,860.0950818741205 1639.7846208752235,860.0950818741205" fill="#738397"/>
+<rect x="1274.25" y="826.5" width="39.0" height="23" fill="#F7F9FC"/><text x="1293.75" y="843.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">FAQ</text>
+<polyline points="270.0,978 270.0,1027.5 952.5,1027.5 952.5,1050" fill="none" stroke="#738397" stroke-width="2"/><polygon points="952.5,1050 947.7153791247765,1040.0950818741205 957.2846208752235,1040.0950818741205" fill="#738397"/>
+<rect x="592.25" y="1015.5" width="38.0" height="23" fill="#F7F9FC"/><text x="611.25" y="1032.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">交接</text>
+<polyline points="725.0,978 725.0,1000.5 952.5,1000.5 952.5,1050" fill="none" stroke="#738397" stroke-width="2"/><polygon points="952.5,1050 947.7153791247765,1040.0950818741205 957.2846208752235,1040.0950818741205" fill="#738397"/>
+<rect x="819.75" y="988.5" width="38.0" height="23" fill="#F7F9FC"/><text x="838.75" y="1005.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">交接</text>
+<polyline points="1180.0,978 1180.0,1009.5 952.5,1009.5 952.5,1050" fill="none" stroke="#738397" stroke-width="2"/><polygon points="952.5,1050 947.7153791247765,1040.0950818741205 957.2846208752235,1040.0950818741205" fill="#738397"/>
+<rect x="1047.25" y="997.5" width="38.0" height="23" fill="#F7F9FC"/><text x="1066.25" y="1014.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">交接</text>
+<polyline points="1635.0,978 1635.0,1018.5 952.5,1018.5 952.5,1050" fill="none" stroke="#738397" stroke-width="2"/><polygon points="952.5,1050 947.7153791247765,1040.0950818741205 957.2846208752235,1040.0950818741205" fill="#738397"/>
+<rect x="1274.75" y="1006.5" width="38.0" height="23" fill="#F7F9FC"/><text x="1293.75" y="1023.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">交接</text>
+<polyline points="1635.0,618 1635.0,666.5 81,666.5 81,1181.5 952.5,1181.5 952.5,1230" fill="none" stroke="#738397" stroke-width="2"/><polygon points="952.5,1230 947.7153791247765,1220.0950818741205 957.2846208752235,1220.0950818741205" fill="#738397"/>
+<rect x="839.0" y="654.5" width="38.0" height="23" fill="#F7F9FC"/><text x="858.0" y="671.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">回复</text>
+<polyline points="952.5,1158 952.5,1230" fill="none" stroke="#738397" stroke-width="2"/><polygon points="952.5,1230 947.7153791247765,1220.0950818741205 957.2846208752235,1220.0950818741205" fill="#738397"/>
+<rect x="782.5" y="150" width="340" height="108" rx="12" fill="#F1F5F9" stroke="#64748B" stroke-width="2"/>
+<text x="952.5" y="199.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">ConversationGraph.invoke</text>
+<text x="952.5" y="223.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">用户 / 会话隔离与锁</text>
+<rect x="782.5" y="330" width="340" height="108" rx="12" fill="#FFF4DE" stroke="#BD8833" stroke-width="2"/>
+<text x="952.5" y="379.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">static_faq_cache</text>
+<text x="952.5" y="403.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">完整唯一的审核缓存</text>
+<rect x="782.5" y="510" width="340" height="108" rx="12" fill="#EAF2FF" stroke="#3575C5" stroke-width="2"/>
+<text x="952.5" y="559.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">supervisor</text>
+<text x="952.5" y="583.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">模型导航 / 账户范围</text>
+<rect x="100" y="510" width="340" height="108" rx="12" fill="#F2EDFC" stroke="#8867B4" stroke-width="2"/>
+<text x="270.0" y="559.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">AgentRegistry</text>
+<text x="270.0" y="583.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">目录 / schema / 接线</text>
+<rect x="1465" y="510" width="340" height="108" rx="12" fill="#E9F6F1" stroke="#288366" stroke-width="2"/>
+<text x="1635.0" y="559.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">general_reply</text>
+<text x="1635.0" y="583.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">问候 / 范围拒绝</text>
+<rect x="100" y="870" width="340" height="108" rx="12" fill="#E9F6F1" stroke="#288366" stroke-width="2"/>
+<text x="270.0" y="919.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">appointment_subgraph</text>
+<text x="270.0" y="943.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">预约 / 查询 / 取消 / 签到</text>
+<rect x="555" y="870" width="340" height="108" rx="12" fill="#E9F6F1" stroke="#288366" stroke-width="2"/>
+<text x="725.0" y="919.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">points_subgraph</text>
+<text x="725.0" y="943.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">爱心积分 / 订单 / 地址</text>
+<rect x="1010" y="870" width="340" height="108" rx="12" fill="#E9F6F1" stroke="#288366" stroke-width="2"/>
+<text x="1180.0" y="919.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">records_subgraph</text>
+<text x="1180.0" y="943.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">个人献血记录查询</text>
+<rect x="1465" y="870" width="340" height="108" rx="12" fill="#E9F6F1" stroke="#288366" stroke-width="2"/>
+<text x="1635.0" y="919.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">faq_subgraph</text>
+<text x="1635.0" y="943.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">知识与业务组合只读问答</text>
+<rect x="1465" y="690" width="340" height="108" rx="12" fill="#F5F5F5" stroke="#87909D" stroke-width="2" stroke-dasharray="7 5"/>
+<text x="1635.0" y="739.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">ocr_subgraph</text>
+<text x="1635.0" y="763.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">原型注册保留 / 暂缓</text>
+<rect x="782.5" y="690" width="340" height="108" rx="12" fill="#EAF2FF" stroke="#3575C5" stroke-width="2"/>
+<text x="952.5" y="727.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">领域派发关系</text>
+<text x="952.5" y="751.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">单任务直派 / 多任务队列</text>
+<text x="952.5" y="775.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">TaskCoordinator</text>
+<rect x="782.5" y="1050" width="340" height="108" rx="12" fill="#FFF4DE" stroke="#BD8833" stroke-width="2"/>
+<text x="952.5" y="1099.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">agent_handoff</text>
+<text x="952.5" y="1123.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">等待用户或回交主导航</text>
+<rect x="782.5" y="1230" width="340" height="108" rx="12" fill="#F1F5F9" stroke="#64748B" stroke-width="2"/>
+<text x="952.5" y="1279.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">本轮结束</text>
+<text x="952.5" y="1303.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">checkpoint 续接下一轮</text>
+<text x="100" y="1460" font-family="sans-serif" font-size="14" fill="#6B7C90">2026-11-09 · 本地集成快照 · 离线共享几何预览；可编辑源见 smart-blood-donation.drawio</text></svg>

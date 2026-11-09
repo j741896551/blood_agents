@@ -1,0 +1,28 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    User["用户<br/>交互与最终确认"]:::entry
+    ConversationGraph["智慧献血 Agent 服务<br/>LangChain / LangGraph<br/>Gradio / FastAPI / CLI"]:::orchestrator
+    ModelGateway["平台大模型 API<br/>主备 / 预算 / 熔断"]:::model
+    LegacyBloodAPI["外部业务能力<br/>HTTP / MCP / mock_file"]:::external
+    KnowledgeWorkspace["知识工作区与检索<br/>发布资料 / BGE / 索引"]:::tool
+    AgentRepository["Agent 自有持久化<br/>会话 / 偏好 / checkpoint"]:::storage
+    User -->|"用户消息"| ConversationGraph
+    ConversationGraph -->|"语义理解 / 回复"| ModelGateway
+    ConversationGraph -->|"业务工具"| LegacyBloodAPI
+    ConversationGraph -->|"知识查询 / 管理"| KnowledgeWorkspace
+    ConversationGraph -->|"保存与恢复"| AgentRepository
+    linkStyle 0 stroke:#738397,stroke-width:1.5px;
+    linkStyle 1 stroke:#738397,stroke-width:1.5px;
+    linkStyle 2 stroke:#738397,stroke-width:1.5px;
+    linkStyle 3 stroke:#738397,stroke-width:1.5px;
+    linkStyle 4 stroke:#8867B4,stroke-width:1.5px;

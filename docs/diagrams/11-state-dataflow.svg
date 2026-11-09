@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="1660" viewBox="0 0 1480 1660">
+<rect width="100%" height="100%" fill="#F7F9FC"/>
+<text x="100" y="66" font-family="sans-serif" font-size="30" fill="#14263D">结构化状态与数据流</text>
+<text x="100" y="106" font-family="sans-serif" font-size="14" fill="#586B82">本地集成｜模型输出动作和槽位，程序保存流程状态并执行工具</text>
+<polyline points="270.0,258 270.0,280.5 725.0,280.5 725.0,330" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,330 720.2153791247765,320.0950818741206 729.7846208752235,320.0950818741206" fill="#738397"/>
+<polyline points="725.0,438 725.0,469.5 270.0,469.5 270.0,510" fill="none" stroke="#738397" stroke-width="2"/><polygon points="270.0,510 265.21537912477646,500.0950818741206 274.78462087522354,500.0950818741206" fill="#738397"/>
+<polyline points="725.0,438 725.0,510" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,510 720.2153791247765,500.0950818741206 729.7846208752235,500.0950818741206" fill="#738397"/>
+<polyline points="725.0,438 725.0,487.5 1180.0,487.5 1180.0,510" fill="none" stroke="#738397" stroke-width="2"/><polygon points="1180.0,510 1175.2153791247765,500.0950818741206 1184.7846208752235,500.0950818741206" fill="#738397"/>
+<polyline points="270.0,618 270.0,640.5 725.0,640.5 725.0,690" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,690 720.2153791247765,680.0950818741205 729.7846208752235,680.0950818741205" fill="#738397"/>
+<polyline points="725.0,618 725.0,690" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,690 720.2153791247765,680.0950818741205 729.7846208752235,680.0950818741205" fill="#738397"/>
+<polyline points="1180.0,618 1180.0,658.5 725.0,658.5 725.0,690" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,690 720.2153791247765,680.0950818741205 729.7846208752235,680.0950818741205" fill="#738397"/>
+<polyline points="725.0,798 725.0,870" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,870 720.2153791247765,860.0950818741205 729.7846208752235,860.0950818741205" fill="#738397"/>
+<polyline points="725.0,978 725.0,1050" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1050 720.2153791247765,1040.0950818741205 729.7846208752235,1040.0950818741205" fill="#738397"/>
+<polyline points="725.0,1158 725.0,1230" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1230 720.2153791247765,1220.0950818741205 729.7846208752235,1220.0950818741205" fill="#738397"/>
+<polyline points="725.0,1338 725.0,1410" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1410 720.2153791247765,1400.0950818741205 729.7846208752235,1400.0950818741205" fill="#738397"/>
+<polyline points="725.0,1518 725.0,1566.5 81,1566.5 81,281.5 725.0,281.5 725.0,330" fill="none" stroke="#8867B4" stroke-width="2"/><polygon points="725.0,330 720.2153791247765,320.0950818741206 729.7846208752235,320.0950818741206" fill="#8867B4"/>
+<rect x="-4.0" y="912.0" width="170.0" height="23" fill="#F7F9FC"/><text x="81.0" y="929.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">add_messages reducer</text>
+<rect x="100" y="150" width="340" height="108" rx="12" fill="#F1F5F9" stroke="#64748B" stroke-width="2"/>
+<text x="270.0" y="199.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">HumanMessage</text>
+<text x="270.0" y="223.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">用户本轮原话</text>
+<rect x="555" y="330" width="340" height="108" rx="12" fill="#F2EDFC" stroke="#8867B4" stroke-width="2"/>
+<text x="725.0" y="379.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">AgentState</text>
+<text x="725.0" y="403.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">messages / active_agent / results</text>
+<rect x="100" y="510" width="340" height="108" rx="12" fill="#F4EEFF" stroke="#8C60BD" stroke-width="2"/>
+<text x="270.0" y="559.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">NavigationDecision</text>
+<text x="270.0" y="583.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">意图 / 账户范围 / 任务片段</text>
+<rect x="555" y="510" width="340" height="108" rx="12" fill="#F4EEFF" stroke="#8C60BD" stroke-width="2"/>
+<text x="725.0" y="559.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">AppointmentUnderstanding</text>
+<text x="725.0" y="583.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">action / slots / site_candidates</text>
+<rect x="1010" y="510" width="340" height="108" rx="12" fill="#F4EEFF" stroke="#8C60BD" stroke-width="2"/>
+<text x="1180.0" y="559.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">PointsUnderstanding</text>
+<text x="1180.0" y="583.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">动作与明确业务字段</text>
+<rect x="555" y="690" width="340" height="108" rx="12" fill="#FFF4DE" stroke="#BD8833" stroke-width="2"/>
+<text x="725.0" y="739.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">领域执行器与字段契约</text>
+<text x="725.0" y="763.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">格式 / 来源 / 版本 / 确认</text>
+<rect x="555" y="870" width="340" height="108" rx="12" fill="#EFF8EC" stroke="#66933B" stroke-width="2"/>
+<text x="725.0" y="919.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">ToolRegistry</text>
+<text x="725.0" y="943.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">入口身份绑定与调用</text>
+<rect x="555" y="1050" width="340" height="108" rx="12" fill="#F2EDFC" stroke="#8867B4" stroke-width="2"/>
+<text x="725.0" y="1099.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">本轮 result</text>
+<text x="725.0" y="1123.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">业务回执 / 检索观察</text>
+<rect x="555" y="1230" width="340" height="108" rx="12" fill="#F4EEFF" stroke="#8C60BD" stroke-width="2"/>
+<text x="725.0" y="1279.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">ReplyComposer</text>
+<text x="725.0" y="1303.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">模型表达＋后置检查</text>
+<rect x="555" y="1410" width="340" height="108" rx="12" fill="#F1F5F9" stroke="#64748B" stroke-width="2"/>
+<text x="725.0" y="1459.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">AIMessage</text>
+<text x="725.0" y="1483.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">用户答复与来源状态</text>
+<text x="100" y="1640" font-family="sans-serif" font-size="14" fill="#6B7C90">2026-11-09 · 本地集成快照 · 离线共享几何预览；可编辑源见 smart-blood-donation.drawio</text></svg>

@@ -1,0 +1,44 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    ToolRegistry["ToolRegistry.invoke<br/>身份绑定 / 追踪 / 工具边界"]:::orchestrator
+    business_api_from_env["business_api_from_env<br/>按业务模式配置选择后端"]:::decision
+    LegacyHTTPClient["http：LegacyHTTPClient<br/>URL / Bearer Token"]:::tool
+    MCPBusinessQueryClient["mcp：MCPBusinessQueryClient<br/>Streamable HTTP / stdio"]:::tool
+    FileBusinessAPI["mock_file：FileBusinessAPI<br/>独立 demo_business 包"]:::tool
+    HTTP_business["独立业务 HTTP 服务<br/>本机示例监听 127.0.0.1:8001"]:::external
+    business_sqlite["本机 HTTP 演示业务库<br/>独立 SQLite"]:::storage
+    build_mcp_server["build_mcp_server<br/>协议工具＋动态预约契约"]:::external
+    MCP_backend["MCP 服务端后端<br/>HTTP 适配器或文件实现"]:::decision
+    business_json["独立 JSON 业务数据<br/>.local/business.json"]:::storage
+    ToolRegistry --> business_api_from_env
+    business_api_from_env -->|"http"| LegacyHTTPClient
+    business_api_from_env -->|"mcp"| MCPBusinessQueryClient
+    business_api_from_env -->|"mock_file"| FileBusinessAPI
+    LegacyHTTPClient --> HTTP_business
+    HTTP_business -->|"读写业务事实"| business_sqlite
+    MCPBusinessQueryClient --> build_mcp_server
+    build_mcp_server --> MCP_backend
+    MCP_backend -->|"选择 http"| HTTP_business
+    MCP_backend -->|"选择 mock_file"| business_json
+    FileBusinessAPI --> business_json
+    linkStyle 0 stroke:#738397,stroke-width:1.5px;
+    linkStyle 1 stroke:#738397,stroke-width:1.5px;
+    linkStyle 2 stroke:#738397,stroke-width:1.5px;
+    linkStyle 3 stroke:#738397,stroke-width:1.5px;
+    linkStyle 4 stroke:#738397,stroke-width:1.5px;
+    linkStyle 5 stroke:#738397,stroke-width:1.5px;
+    linkStyle 6 stroke:#738397,stroke-width:1.5px;
+    linkStyle 7 stroke:#738397,stroke-width:1.5px;
+    linkStyle 8 stroke:#738397,stroke-width:1.5px;
+    linkStyle 9 stroke:#738397,stroke-width:1.5px;
+    linkStyle 10 stroke:#738397,stroke-width:1.5px;

@@ -1,0 +1,41 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    Collecting["正常收集有效资料"]:::planned
+    NeedsClarification["仅歧义 / 冲突 / 含糊修改<br/>进入临时确认队列"]:::planned
+    ConfirmationItem["临时事项结构<br/>字段 / 值 / 候选 / 约束 / 版本"]:::planned
+    SemanticDecision["模型理解接受 / 拒绝 / 修改<br/>支持部分或多项解决"]:::planned
+    UpdateDraft["程序验证并更新草稿<br/>旧确认和令牌失效"]:::planned
+    FinalPreview["资料完整且无未解决事项<br/>生成新的完整预约预览"]:::planned
+    SubmissionConfirmation["scope = submission<br/>绑定草稿快照版本"]:::planned
+    Submit["确认版本有效且本轮无修改<br/>才允许业务提交"]:::planned
+    Modification["最终确认中临时修改<br/>明确值直接更新 / 歧义再澄清"]:::planned
+    Collecting -.->|"需澄清"| NeedsClarification
+    NeedsClarification -.-> ConfirmationItem
+    ConfirmationItem -.-> SemanticDecision
+    SemanticDecision -.-> UpdateDraft
+    UpdateDraft -.->|"继续收集或处理队列"| Collecting
+    Collecting -.->|"资料齐全有效"| FinalPreview
+    FinalPreview -.-> SubmissionConfirmation
+    SubmissionConfirmation -.->|"最终同意提交"| Submit
+    SubmissionConfirmation -.->|"识别到修改"| Modification
+    Modification -.->|"不消费旧确认"| UpdateDraft
+    linkStyle 0 stroke:#87909D,stroke-width:1.5px;
+    linkStyle 1 stroke:#87909D,stroke-width:1.5px;
+    linkStyle 2 stroke:#87909D,stroke-width:1.5px;
+    linkStyle 3 stroke:#87909D,stroke-width:1.5px;
+    linkStyle 4 stroke:#87909D,stroke-width:1.5px;
+    linkStyle 5 stroke:#87909D,stroke-width:1.5px;
+    linkStyle 6 stroke:#87909D,stroke-width:1.5px;
+    linkStyle 7 stroke:#87909D,stroke-width:1.5px;
+    linkStyle 8 stroke:#87909D,stroke-width:1.5px;
+    linkStyle 9 stroke:#87909D,stroke-width:1.5px;

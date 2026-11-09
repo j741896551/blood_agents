@@ -1,0 +1,21 @@
+{
+  "routing": [
+    {"text": "帮我预约下周献血", "intent": "appointment"},
+    {"text": "查一下我的献血记录", "intent": "records"},
+    {"text": "积分能换什么礼品", "intent": "points"},
+    {"text": "OCR识别化验单", "intent": "ocr"},
+    {"text": "献血前能吃早餐吗", "intent": "faq"}
+  ],
+  "retrieval": [
+    {"query": "献血前可以空腹吗", "source": "https://www.hbhr.gov.cn/hrqxxgk/xxgkml/ggqsydwxxgk/wsjk/ddzwsy/202508/t20250821_720743.html"},
+    {"query": "献血后能剧烈运动吗", "source": "https://www.hbhr.gov.cn/hrqxxgk/xxgkml/ggqsydwxxgk/wsjk/ddzwsy/202508/t20250821_720743.html"},
+    {"query": "两次采集血液的间隔期至少多久", "source": "https://zwfw.nhc.gov.cn/kzx/zcfg/qdxzxgxbkszsp_246/199712/t19971229_1352.html"},
+    {"query": "我下次什么时候可以献血，不同献血类型的间隔分别多久", "source": "https://wjw.fujian.gov.cn/ztzl/rexuebamin/xianxuekpzs/202609/t20260930_7220234.htm"},
+    {"query": "全血和单采血小板有什么不同", "source": "https://www.nhc.gov.cn/xcs/c100122/202506/a731e5672ddc45cea7c85ecf90821889.shtml"},
+    {"query": "全国电子无偿献血证从哪里查询", "source": "https://www.nhc.gov.cn/yzygj/c100068/202006/df0e888f92e642c68c13cb2976503b97.shtml"},
+    {"query": "献出的血液会经过哪些检测", "source": "https://www.nhc.gov.cn/xcs/c100122/202606/ea9d8d2493f84cbf802f6ebb6155fa55.shtml"},
+    {"query": "献血前要知情同意和健康征询吗", "source": "https://www.nhc.gov.cn/zwgk/jdjd/201304/19aefe515bbc4c6d86bb64a389195a38.shtml"},
+    {"query": "今天上海天气如何", "source": null},
+    {"query": "北京地铁末班车几点", "source": null}
+  ]
+}

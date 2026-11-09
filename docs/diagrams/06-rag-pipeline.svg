@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1025" height="2020" viewBox="0 0 1025 2020">
+<rect width="100%" height="100%" fill="#F7F9FC"/>
+<text x="100" y="66" font-family="sans-serif" font-size="30" fill="#14263D">RAG 知识库生命周期</text>
+<text x="100" y="106" font-family="sans-serif" font-size="14" fill="#586B82">本地集成｜草稿测试与正式索引分离；没有预置发布语料时按空库处理</text>
+<polyline points="725.0,258 725.0,330" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,330 720.2153791247765,320.0950818741206 729.7846208752235,320.0950818741206" fill="#738397"/>
+<polyline points="725.0,438 725.0,510" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,510 720.2153791247765,500.0950818741206 729.7846208752235,500.0950818741206" fill="#738397"/>
+<rect x="685.0" y="462.0" width="80.0" height="23" fill="#F7F9FC"/><text x="725.0" y="479.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">待确认草稿</text>
+<polyline points="725.0,618 725.0,690" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,690 720.2153791247765,680.0950818741205 729.7846208752235,680.0950818741205" fill="#738397"/>
+<rect x="692.0" y="642.0" width="66.0" height="23" fill="#F7F9FC"/><text x="725.0" y="659.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">确认正文</text>
+<polyline points="725.0,798 725.0,847.5 270.0,847.5 270.0,870" fill="none" stroke="#738397" stroke-width="2"/><polygon points="270.0,870 265.21537912477646,860.0950818741205 274.78462087522354,860.0950818741205" fill="#738397"/>
+<rect x="457.5" y="835.5" width="80.0" height="23" fill="#F7F9FC"/><text x="497.5" y="852.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">发布前测试</text>
+<polyline points="440,924.0 555,924.0" fill="none" stroke="#738397" stroke-width="2"/><polygon points="555,924.0 545.0950818741205,928.7846208752235 545.0950818741205,919.2153791247765" fill="#738397"/>
+<rect x="464.5" y="912.0" width="66.0" height="23" fill="#F7F9FC"/><text x="497.5" y="929.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">人工检查</text>
+<polyline points="725.0,978 725.0,1050" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1050 720.2153791247765,1040.0950818741205 729.7846208752235,1040.0950818741205" fill="#738397"/>
+<polyline points="725.0,1158 725.0,1230" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1230 720.2153791247765,1220.0950818741205 729.7846208752235,1220.0950818741205" fill="#738397"/>
+<polyline points="270.0,1338 270.0,1410" fill="none" stroke="#738397" stroke-width="2"/><polygon points="270.0,1410 265.21537912477646,1400.0950818741205 274.78462087522354,1400.0950818741205" fill="#738397"/>
+<polyline points="725.0,1338 725.0,1410" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1410 720.2153791247765,1400.0950818741205 729.7846208752235,1400.0950818741205" fill="#738397"/>
+<polyline points="555,1284.0 440,1284.0" fill="none" stroke="#738397" stroke-width="2"/><polygon points="440,1284.0 449.9049181258794,1279.2153791247765 449.9049181258794,1288.7846208752235" fill="#738397"/>
+<rect x="443.5" y="1272.0" width="108.0" height="23" fill="#F7F9FC"/><text x="497.5" y="1289.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">启用向量后端时</text>
+<polyline points="440,1464.0 555,1464.0" fill="none" stroke="#738397" stroke-width="2"/><polygon points="555,1464.0 545.0950818741205,1468.7846208752235 545.0950818741205,1459.2153791247765" fill="#738397"/>
+<polyline points="725.0,1518 725.0,1590" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1590 720.2153791247765,1580.0950818741205 729.7846208752235,1580.0950818741205" fill="#738397"/>
+<rect x="685.0" y="1542.0" width="80.0" height="23" fill="#F7F9FC"/><text x="725.0" y="1559.0" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">启用精排时</text>
+<polyline points="725.0,1518 725.0,1539.5 45,1539.5 45,1748.5 725.0,1748.5 725.0,1770" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1770 720.2153791247765,1760.0950818741205 729.7846208752235,1760.0950818741205" fill="#738397"/>
+<rect x="345.0" y="1527.5" width="80.0" height="23" fill="#F7F9FC"/><text x="385.0" y="1544.5" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4F6279">未启用精排</text>
+<polyline points="725.0,1698 725.0,1770" fill="none" stroke="#738397" stroke-width="2"/><polygon points="725.0,1770 720.2153791247765,1760.0950818741205 729.7846208752235,1760.0950818741205" fill="#738397"/>
+<rect x="555" y="150" width="340" height="108" rx="12" fill="#F1F5F9" stroke="#64748B" stroke-width="2"/>
+<text x="725.0" y="199.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">Gradio 知识库管理</text>
+<text x="725.0" y="223.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">上传 / 清洗 / 切分 / 发布</text>
+<rect x="555" y="330" width="340" height="108" rx="12" fill="#F2EDFC" stroke="#8867B4" stroke-width="2"/>
+<text x="725.0" y="379.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">KnowledgeWorkspace</text>
+<text x="725.0" y="403.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">提取完整 PDF / Markdown / TXT</text>
+<rect x="555" y="510" width="340" height="108" rx="12" fill="#FFF4DE" stroke="#BD8833" stroke-width="2"/>
+<text x="725.0" y="559.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">核对原件与提取结果</text>
+<text x="725.0" y="583.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">确认清洗后的正文</text>
+<rect x="555" y="690" width="340" height="108" rx="12" fill="#EFF8EC" stroke="#66933B" stroke-width="2"/>
+<text x="725.0" y="739.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">DocumentChunkingPipeline</text>
+<text x="725.0" y="763.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">章节 / 段落 / 滑窗 / 语义</text>
+<rect x="100" y="870" width="340" height="108" rx="12" fill="#EFF8EC" stroke="#66933B" stroke-width="2"/>
+<text x="270.0" y="919.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">临时 BGE 召回</text>
+<text x="270.0" y="943.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">单题测试 / 策略对比</text>
+<rect x="555" y="870" width="340" height="108" rx="12" fill="#FFF4DE" stroke="#BD8833" stroke-width="2"/>
+<text x="725.0" y="919.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">confirm_chunking_evaluation</text>
+<text x="725.0" y="943.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">人工确认当前参数合格</text>
+<rect x="555" y="1050" width="340" height="108" rx="12" fill="#EAF2FF" stroke="#3575C5" stroke-width="2"/>
+<text x="725.0" y="1099.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">publish + refresh</text>
+<text x="725.0" y="1123.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">构建成功才替换活动检索器</text>
+<rect x="555" y="1230" width="340" height="108" rx="12" fill="#F2EDFC" stroke="#8867B4" stroke-width="2"/>
+<text x="725.0" y="1279.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">default_retriever</text>
+<text x="725.0" y="1303.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">当前已发布文档集合</text>
+<rect x="100" y="1230" width="340" height="108" rx="12" fill="#F4EEFF" stroke="#8C60BD" stroke-width="2"/>
+<text x="270.0" y="1279.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">BGEEncoder</text>
+<text x="270.0" y="1303.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">bge-large-zh-v1.5</text>
+<rect x="100" y="1410" width="340" height="108" rx="12" fill="#F2EDFC" stroke="#8867B4" stroke-width="2"/>
+<text x="270.0" y="1447.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">FAISSVectorStore</text>
+<text x="270.0" y="1471.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">或 MilvusVectorStore</text>
+<text x="270.0" y="1495.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">向量召回 / 绝对阈值</text>
+<rect x="555" y="1410" width="340" height="108" rx="12" fill="#EFF8EC" stroke="#66933B" stroke-width="2"/>
+<text x="725.0" y="1459.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">HybridRetriever.search</text>
+<text x="725.0" y="1483.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">词面分数＋向量分数相加</text>
+<rect x="555" y="1590" width="340" height="108" rx="12" fill="#F4EEFF" stroke="#8C60BD" stroke-width="2"/>
+<text x="725.0" y="1639.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">BGEReranker（可选）</text>
+<text x="725.0" y="1663.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">只排序已过门槛的候选</text>
+<rect x="555" y="1770" width="340" height="108" rx="12" fill="#F1F5F9" stroke="#64748B" stroke-width="2"/>
+<text x="725.0" y="1819.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">文本 / 来源 / 元数据</text>
+<text x="725.0" y="1843.0" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#24364C">正式索引检索 / FAQ 证据核验</text>
+<text x="100" y="2000" font-family="sans-serif" font-size="14" fill="#6B7C90">2026-11-09 · 本地集成快照 · 离线共享几何预览；可编辑源见 smart-blood-donation.drawio</text></svg>

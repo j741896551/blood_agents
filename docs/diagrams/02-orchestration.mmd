@@ -1,0 +1,59 @@
+%%{init: {'theme': 'base', 'flowchart': {'curve': 'linear'}, 'themeVariables': {'fontFamily': 'sans-serif', 'fontSize': '15px'}}}%%
+flowchart TB
+    classDef entry fill:#F1F5F9,stroke:#64748B,color:#24364C;
+    classDef orchestrator fill:#EAF2FF,stroke:#3575C5,color:#24364C;
+    classDef agent fill:#E9F6F1,stroke:#288366,color:#24364C;
+    classDef tool fill:#EFF8EC,stroke:#66933B,color:#24364C;
+    classDef storage fill:#F2EDFC,stroke:#8867B4,color:#24364C;
+    classDef model fill:#F4EEFF,stroke:#8C60BD,color:#24364C;
+    classDef decision fill:#FFF4DE,stroke:#BD8833,color:#24364C;
+    classDef error fill:#FFF0EE,stroke:#CA6B5A,color:#24364C;
+    classDef planned fill:#F5F5F5,stroke:#87909D,color:#24364C,stroke-dasharray:5 3;
+    classDef external fill:#FFF1E5,stroke:#BB7D42,color:#24364C;
+    ConversationGraph_invoke["ConversationGraph.invoke<br/>用户 / 会话隔离与锁"]:::entry
+    static_faq_cache["static_faq_cache<br/>完整唯一的审核缓存"]:::decision
+    supervisor["supervisor<br/>模型导航 / 账户范围"]:::orchestrator
+    AgentRegistry["AgentRegistry<br/>目录 / schema / 接线"]:::storage
+    main_agent_response["general_reply<br/>问候 / 范围拒绝"]:::agent
+    appointment_subgraph["appointment_subgraph<br/>预约 / 查询 / 取消 / 签到"]:::agent
+    points_subgraph["points_subgraph<br/>爱心积分 / 订单 / 地址"]:::agent
+    records_subgraph["records_subgraph<br/>个人献血记录查询"]:::agent
+    faq_subgraph["faq_subgraph<br/>知识与业务组合只读问答"]:::agent
+    ocr_subgraph["ocr_subgraph<br/>原型注册保留 / 暂缓"]:::planned
+    TaskCoordinator["领域派发关系<br/>单任务直派 / 多任务队列<br/>TaskCoordinator"]:::orchestrator
+    main_agent_return["agent_handoff<br/>等待用户或回交主导航"]:::decision
+    END["本轮结束<br/>checkpoint 续接下一轮"]:::entry
+    ConversationGraph_invoke --> static_faq_cache
+    static_faq_cache -->|"未命中"| supervisor
+    static_faq_cache -->|"缓存命中"| END
+    AgentRegistry -->|"能力目录"| supervisor
+    supervisor -->|"general"| main_agent_response
+    supervisor -->|"领域请求"| TaskCoordinator
+    TaskCoordinator -.->|"暂缓注册项"| ocr_subgraph
+    TaskCoordinator -->|"预约"| appointment_subgraph
+    TaskCoordinator -->|"积分"| points_subgraph
+    TaskCoordinator -->|"记录"| records_subgraph
+    TaskCoordinator -->|"FAQ"| faq_subgraph
+    appointment_subgraph -->|"交接"| main_agent_return
+    points_subgraph -->|"交接"| main_agent_return
+    records_subgraph -->|"交接"| main_agent_return
+    faq_subgraph -->|"交接"| main_agent_return
+    main_agent_response -->|"回复"| END
+    main_agent_return --> END
+    linkStyle 0 stroke:#738397,stroke-width:1.5px;
+    linkStyle 1 stroke:#738397,stroke-width:1.5px;
+    linkStyle 2 stroke:#738397,stroke-width:1.5px;
+    linkStyle 3 stroke:#8867B4,stroke-width:1.5px;
+    linkStyle 4 stroke:#738397,stroke-width:1.5px;
+    linkStyle 5 stroke:#738397,stroke-width:1.5px;
+    linkStyle 6 stroke:#87909D,stroke-width:1.5px;
+    linkStyle 7 stroke:#738397,stroke-width:1.5px;
+    linkStyle 8 stroke:#738397,stroke-width:1.5px;
+    linkStyle 9 stroke:#738397,stroke-width:1.5px;
+    linkStyle 10 stroke:#738397,stroke-width:1.5px;
+    linkStyle 11 stroke:#738397,stroke-width:1.5px;
+    linkStyle 12 stroke:#738397,stroke-width:1.5px;
+    linkStyle 13 stroke:#738397,stroke-width:1.5px;
+    linkStyle 14 stroke:#738397,stroke-width:1.5px;
+    linkStyle 15 stroke:#738397,stroke-width:1.5px;
+    linkStyle 16 stroke:#738397,stroke-width:1.5px;
